@@ -10,52 +10,62 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    var ncdr: NCDRRoot?
     // MARK: - Network methods
-    func loadSynchronouslyFromURLString(_ urlString: String) {
-        if let url = URL(string: urlString) {
-            let request = NSMutableURLRequest(url: url)
-            request.timeoutInterval = 30.0
-            var response: URLResponse?
-            let error: NSErrorPointer? = nil
-            var data: Data?
-            do {
-                data = try NSURLConnection.sendSynchronousRequest(request as URLRequest, returning: &response)
-            } catch let error1 as NSError {
-                error??.pointee = error1
-                data = nil
-            }
-            if (data != nil) {
-                print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue)!)
-                //            return UIImage(data: data!)
-            }
-        }
-        //    return nil
+    
+    @IBAction func buttonClick(_ sender: UIButton) {
     }
-    func loadURLData(_ urlString: String) {
-        let dataURL = URL(string: urlString)
-        let task = URLSession.shared.dataTask(with: dataURL!) { (data, response, error) in
-            if error == nil {
-                if let jsonsObj = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String : Any] {
-                    if let json = jsonsObj["title"] as? String {
-                        print(json)
-                    }
-                    if let json = jsonsObj["author"] as? [String : String] {
-                        for (key, value) in json {
-                            print(value)
+    @IBAction func buttonClick2(_ sender: UIButton) {
+        
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+//        ncdr = NCDRRoot()
+//        ncdr?.getDataFromInternet(URLString: "https://alerts.ncdr.nat.gov.tw/JSONAtomFeeds.ashx")
+        getDataFromInternet(URLString: "https://alerts.ncdr.nat.gov.tw/JSONAtomFeeds.ashx")
+    }
+
+    func getDataFromInternet(URLString: String) {
+        let url = URL(string: URLString)!
+        let task = URLSession.shared.dataTask(with: url) { (data, response , error) in
+            
+            if let data = data {
+                let jsonDicObj = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String : Any]
+                //root
+                if let title = jsonDicObj!["title"] as? String {
+                    print("Root title= \(title)")
+                }
+                //entry
+                if let entries = jsonDicObj!["entry"] as? [[String : Any]] {
+
+                    for entry in entries {
+                        //id
+                        if let idString = entry["id"] as? String {
+                            print("ID= \(idString)")
                         }
+                        //title
+                        if let title = entry["title"] as? String {
+                            print("Title= \(title)")
+                        }
+                        //summary
+                        if let summary = entry["summary"] as? [String : String] {
+                            print("Summary= \(summary["#text"])")
+                        }
+                        //updated
+                        if let updated = entry["updated"] as? String {
+                            print("Updated= \(updated)")
+                        }
+                        print("-----------------------------------------")
+                        
                     }
                 }
+            } else {
+                print("Error...")
             }
         }
         task.resume()
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        loadURLData("https://alerts.ncdr.nat.gov.tw/JSONAtomFeeds.ashx")
-//        loadSynchronouslyFromURLString("https://alerts.ncdr.nat.gov.tw/JSONAtomFeeds.ashx")
-    }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
