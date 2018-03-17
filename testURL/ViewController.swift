@@ -23,6 +23,7 @@ class ViewController: UIViewController {
         }
     }
     @IBAction func buttonClick2(_ sender: UIButton) {
+        printLog("printLog test")
         
     }
     override func viewDidLoad() {
@@ -34,7 +35,16 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
+extension ViewController {
+    func printLog<T>(_ message: T, file: String = #file, method: String = #function, line: Int = #line){
+        #if DEBUG
+//            print("\((file as NSString).lastPathComponent)-> \(method)(\(line)): \(message)")
+            debugPrint("Line:\(line) \(method)(): \(message)")
+        #else
+            print("Line:\(line) \(method)(): \(message)")
+        #endif
+    }
+}
+
 

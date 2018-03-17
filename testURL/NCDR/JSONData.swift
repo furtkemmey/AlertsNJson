@@ -80,6 +80,9 @@ class AlertJson: NSObject {
         return true
     }
 }
-struct Entry {
+struct Entry: CustomDebugStringConvertible {
+    var debugDescription: String
+    
 
 }
+
