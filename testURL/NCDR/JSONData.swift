@@ -10,19 +10,11 @@ import Foundation
 
 class AlertJson: NSObject {
     var urlJson: URL?
-    var idString: [String]?
-    var title: [String]?
-    var entries: [Entry]?
-    var summary: [String]?
-    var updated: [String]?
-    
+    var alertFeeds: AlertFeeds?
 
     init?(URLString: String) {
         super.init()
-        idString = [String]()
-        title = [String]()
-        summary = [String]()
-        updated = [String]()
+//        alertFeeds = AlertFeeds(idString: <#T##String?#>, title: <#T##String?#>, entries: <#T##[Entry]?#>)
         urlJson = URL(string: URLString)
         if !(self.getDataFromInternet(URLString: URLString)) {
             return nil
@@ -44,28 +36,37 @@ class AlertJson: NSObject {
                         if let title = jsonDicObj!["title"] as? String {
                             print("Root title= \(title)")
                         }
-                        //entry
+                        // one tntry
+                        if let entry = jsonDicObj!["entry"] as? [String : Any] {
+                            //title
+                            if let title = entry["title"] as? String {
+//                                self?.title?.append(title)
+                                print("Title= \(title)")
+                            }
+                        }
+                        
+                        // entris
                         if let entries = jsonDicObj!["entry"] as? [[String : Any]] {
                             
                             for entry in entries {
                                 //id
                                 if let idString = entry["id"] as? String {
-                                    self?.idString?.append(idString)
+//                                    self?.idString?.append(idString)
                                     print("ID= \(idString)")
                                 }
                                 //title
                                 if let title = entry["title"] as? String {
-                                    self?.title?.append(title)
+//                                    self?.title?.append(title)
                                     print("Title= \(title)")
                                 }
                                 //summary
                                 if let summary = entry["summary"] as? [String : String] {
-                                    self?.summary?.append(summary["#text"]!)
+//                                    self?.summary?.append(summary["#text"]!)
         //                            print("Summary= \(summary["#text"])")
                                 }
                                 //updated
                                 if let updated = entry["updated"] as? String {
-                                    self?.updated?.append(updated)
+//                                    self?.updated?.append(updated)
         //                            print("Updated= \(updated)")
                                 }
         //                        print("-----------------------------------------")
@@ -84,9 +85,25 @@ class AlertJson: NSObject {
         return true
     }
 }
-struct Entry: CustomDebugStringConvertible {
-    var debugDescription: String
-    
-
+struct AlertFeeds {
+//    CustomDebugStringConvertible
+//    var debugDescription: String
+    init() {
+        entries = [Entry]()
+    }
+    var idString: String?
+    var title: String?
+    var entries: [Entry]?
+}
+struct Entry {
+    init() {
+        print("Entry init")
+    }
+    var idString: String?
+    var title: String?
+    var updated: String?
+    var author: String?
+    var summary: String?
+    var category: String?
 }
 

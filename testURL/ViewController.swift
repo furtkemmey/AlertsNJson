@@ -15,12 +15,11 @@ class ViewController: UIViewController {
     // MARK: - Network methods
     // FIXME: Cannt get data
     @IBAction func buttonClick(_ sender: UIButton) {
-//        alertJson = AlertJson(URLString: "https://alerts.ncdr.nat.gov.tw/JSONAtomFeeds.ashx")
-        if alertJson != nil {
-            for summString in alertJson!.summary! {
-                print("summString= \(summString)")
-            }
-        }
+//        if alertJson != nil {
+//            for summString in alertJson!.summary! {
+//                print("summString= \(summString)")
+//            }
+//        }
     }
     @IBAction func buttonClick2(_ sender: UIButton) {
         printLog("printLog test")
@@ -29,6 +28,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         alertJson = AlertJson(URLString: "https://alerts.ncdr.nat.gov.tw/JSONAtomFeeds.ashx")
+//        alertJson = AlertJson(URLString: "http://192.168.192.154")
     }
 
     override func didReceiveMemoryWarning() {
