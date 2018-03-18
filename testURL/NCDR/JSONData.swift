@@ -9,7 +9,7 @@ import Foundation
 
 // TODO: add protocol AlertJson:didFinish load:
 protocol AlertJSONDelegate: class {
-    func AlertJSON(_ alertJSON:AlertJson?, feeds: AlertFeeds?, entry: [Entry]?)
+    func AlertJSON(_ alertJSON:AlertJson?,didLoad feeds: AlertFeeds?,and entry: [Entry]?)
 }
 // TODO: save to UserDefaults.standar
 
@@ -20,7 +20,6 @@ class AlertJson: NSObject {
 
     init?(URLString: String) {
         super.init()
-//        alertFeeds = AlertFeeds(idString: <#T##String?#>, title: <#T##String?#>, entries: <#T##[Entry]?#>)
         urlJson = URL(string: URLString)
         alertFeeds = AlertFeeds()
         if !(self.getDataFromInternet(URLString: URLString)) {
@@ -109,7 +108,7 @@ class AlertJson: NSObject {
                     } else {
                         print("Error...")
                     }
-                    self?.delegate?.AlertJSON(self, feeds: self?.alertFeeds, entry: self?.alertFeeds?.entries)
+                    self?.delegate?.AlertJSON(self, didLoad: self?.alertFeeds, and: self?.alertFeeds?.entries)
                 }//end URLSession.shared.dataTask
                 task.resume()
             }

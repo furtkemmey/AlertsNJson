@@ -48,12 +48,10 @@ extension ViewController {
     }
 }
 extension ViewController: AlertJSONDelegate {
-    func AlertJSON(_ alertJSON: AlertJson?, feeds: AlertFeeds?, entry: [Entry]?) {
+    func AlertJSON(_ alertJSON: AlertJson?, didLoad feeds: AlertFeeds?, and entry: [Entry]?) {
         printLog("AlertJSONDelegate call")
         printLog("\(String(describing: feeds))")
     }
-    
-    
 }
 
 
