@@ -28,7 +28,6 @@ class AlertJson: NSObject {
     }
     
     private func getDataFromInternet(URLString: String) -> Bool {
-
         if let url = URL(string: URLString) {
             DispatchQueue.global(qos: .userInitiated).async{ [weak self] in
                 let task = URLSession.shared.dataTask(with: url) { [weak self] (data, response , error) in
@@ -105,7 +104,7 @@ class AlertJson: NSObject {
                                 
                             }
                         }
-                    } else {
+                    } else { // if let data = data, url == self?.urlJson
                         print("Error...")
                     }
                     self?.delegate?.AlertJSON(self, didLoad: self?.alertFeeds, and: self?.alertFeeds?.entries)

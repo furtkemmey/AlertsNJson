@@ -15,11 +15,7 @@ class ViewController: UIViewController {
     // MARK: - Network methods
     // FIXME: Cannt get data
     @IBAction func buttonClick(_ sender: UIButton) {
-//        if alertJson != nil {
-//            for summString in alertJson!.summary! {
-//                print("summString= \(summString)")
-//            }
-//        }
+
     }
     @IBAction func buttonClick2(_ sender: UIButton) {
         printLog("printLog test")
