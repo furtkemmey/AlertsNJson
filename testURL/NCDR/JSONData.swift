@@ -8,11 +8,15 @@
 import Foundation
 
 // TODO: add protocol AlertJson:didFinish load:
+protocol AlertJSONDelegate: class {
+    func AlertJSON(_ alertJSON:AlertJson?, feeds: AlertFeeds?, entry: [Entry]?)
+}
 // TODO: save to UserDefaults.standar
 
 class AlertJson: NSObject {
     var urlJson: URL?
     var alertFeeds: AlertFeeds?
+    weak var delegate: AlertJSONDelegate?
 
     init?(URLString: String) {
         super.init()
@@ -24,7 +28,7 @@ class AlertJson: NSObject {
         }
     }
     
-    func getDataFromInternet(URLString: String) -> Bool {
+    private func getDataFromInternet(URLString: String) -> Bool {
 
         if let url = URL(string: URLString) {
             DispatchQueue.global(qos: .userInitiated).async{ [weak self] in
@@ -38,7 +42,7 @@ class AlertJson: NSObject {
                         //root
                         if let title = jsonDicObj!["title"] as? String {
                             self?.alertFeeds?.title = title
-                            print("Root title= \(title)")
+//                            print("Root title= \(title)")
                         }
                         // one tntry
                         if let entry = jsonDicObj!["entry"] as? [String : Any] {
@@ -46,17 +50,17 @@ class AlertJson: NSObject {
                             //id
                             if let idString = entry["id"] as? String {
                                 entryTemp.idString = idString
-                                print("ID= \(idString)")
+//                                print("ID= \(idString)")
                             }
                             //title
                             if let title = entry["title"] as? String {
                                 entryTemp.title = title
-                                print("Title= \(title)")
+//                                print("Title= \(title)")
                             }
                             //updated
                             if let updated = entry["updated"] as? String {
                                 entryTemp.updated = updated
-                                print("Updated= \(updated)")
+//                                print("Updated= \(updated)")
                             }
                             // author
                             if let author = entry["author"] as? [String : String] {
@@ -65,7 +69,7 @@ class AlertJson: NSObject {
                             // summary
                             if let summary = entry["summary"] as? [String : String] {
                                 entryTemp.summary = summary["#text"]
-                                print("Summary= \(String(describing: summary["#text"]))")
+//                                print("Summary= \(String(describing: summary["#text"]))")
                             }
                             // category
                             if let category = entry["category"] as? [String : String] {
@@ -105,6 +109,7 @@ class AlertJson: NSObject {
                     } else {
                         print("Error...")
                     }
+                    self?.delegate?.AlertJSON(self, feeds: self?.alertFeeds, entry: self?.alertFeeds?.entries)
                 }//end URLSession.shared.dataTask
                 task.resume()
             }

@@ -27,8 +27,9 @@ class ViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        alertJson = AlertJson(URLString: "https://alerts.ncdr.nat.gov.tw/JSONAtomFeeds.ashx")
-//        alertJson = AlertJson(URLString: "http://192.168.192.154")
+//        alertJson = AlertJson(URLString: "https://alerts.ncdr.nat.gov.tw/JSONAtomFeeds.ashx")
+        alertJson = AlertJson(URLString: "http://192.168.192.154:3000")
+        alertJson?.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,6 +46,14 @@ extension ViewController {
             print("Line:\(line) \(method)(): \(message)")
         #endif
     }
+}
+extension ViewController: AlertJSONDelegate {
+    func AlertJSON(_ alertJSON: AlertJson?, feeds: AlertFeeds?, entry: [Entry]?) {
+        printLog("AlertJSONDelegate call")
+        printLog("\(String(describing: feeds))")
+    }
+    
+    
 }
 
 
