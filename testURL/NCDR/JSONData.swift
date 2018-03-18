@@ -115,8 +115,6 @@ class AlertJson: NSObject {
     }
 }
 struct AlertFeeds {
-//    CustomDebugStringConvertible
-//    var debugDescription: String
     init() {
         entries = [Entry]()
     }
@@ -124,6 +122,12 @@ struct AlertFeeds {
     var title: String?
     var entries: [Entry]?
 }
+extension AlertFeeds : CustomStringConvertible {
+    var description: String {
+        return "idString = \(String(describing: self.idString))\n title = \(String(describing: self.title))\n entries = \(String(describing: self.entries))"
+    }
+}
+
 struct Entry {
     init() {
         print("Entry init")
@@ -135,4 +139,8 @@ struct Entry {
     var summary: String?
     var category: String?
 }
-
+extension Entry : CustomStringConvertible {
+    var description: String {
+        return "idString = \(String(describing: self.idString))\n title = \(String(describing: self.title))\n updated = \(String(describing: self.updated)),author = \(String(describing: self.author))\n,summary = \(String(describing: self.summary))\n,category = \(String(describing: self.category))\n"
+    }
+}
