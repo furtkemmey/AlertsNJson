@@ -42,25 +42,36 @@ class AlertJson: NSObject {
                         }
                         // one tntry
                         if let entry = jsonDicObj!["entry"] as? [String : Any] {
+                            var entryTemp = Entry()
                             //id
                             if let idString = entry["id"] as? String {
-                                self?.alertFeeds?.idString?.append(idString)
+                                entryTemp.idString = idString
                                 print("ID= \(idString)")
                             }
                             //title
                             if let title = entry["title"] as? String {
-                                self?.alertFeeds?.title?.append(title)
+                                entryTemp.title = title
                                 print("Title= \(title)")
                             }
-                            //summary
-//                            if let summary = entry["summary"] as? [String : String] {                                 self?.alertFeeds?.entries.summary?.append(summary["#text"]!)
-//                                print("Summary= \(summary["#text"])")
-//                            }
                             //updated
-//                            if let updated = entry["updated"] as? String {
-//                                self?.alertFeeds?.updated?.append(updated)
-//                                print("Updated= \(updated)")
-//                            }
+                            if let updated = entry["updated"] as? String {
+                                entryTemp.updated = updated
+                                print("Updated= \(updated)")
+                            }
+                            // author
+                            if let author = entry["author"] as? [String : String] {
+                                entryTemp.author = author["name"]
+                            }
+                            // summary
+                            if let summary = entry["summary"] as? [String : String] {
+                                entryTemp.summary = summary["#text"]
+                                print("Summary= \(String(describing: summary["#text"]))")
+                            }
+                            // category
+                            if let category = entry["category"] as? [String : String] {
+                                entryTemp.category = category["@term"]
+                            }
+                            self?.alertFeeds?.entries?.append(entryTemp)
                         }
                         
                         // entris
