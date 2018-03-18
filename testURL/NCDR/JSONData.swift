@@ -5,8 +5,10 @@
 //  Created by HsuKaiChieh on 09/02/2018.
 //  Copyright © 2018 KaiChieh. All rights reserved.
 //
-
 import Foundation
+
+// TODO: add protocol AlertJson:didFinish load:
+// TODO: save to UserDefaults.standar
 
 class AlertJson: NSObject {
     var urlJson: URL?
@@ -16,6 +18,7 @@ class AlertJson: NSObject {
         super.init()
 //        alertFeeds = AlertFeeds(idString: <#T##String?#>, title: <#T##String?#>, entries: <#T##[Entry]?#>)
         urlJson = URL(string: URLString)
+        alertFeeds = AlertFeeds()
         if !(self.getDataFromInternet(URLString: URLString)) {
             return nil
         }
@@ -25,7 +28,7 @@ class AlertJson: NSObject {
 
         if let url = URL(string: URLString) {
             DispatchQueue.global(qos: .userInitiated).async{ [weak self] in
-                let task = URLSession.shared.dataTask(with: url) { (data, response , error) in
+                let task = URLSession.shared.dataTask(with: url) { [weak self] (data, response , error) in
                                                //check url really we want
                     if let data = data, url == self?.urlJson {
                         guard let jsonDicObj = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String : Any] else {
@@ -34,15 +37,30 @@ class AlertJson: NSObject {
                         
                         //root
                         if let title = jsonDicObj!["title"] as? String {
+                            self?.alertFeeds?.title = title
                             print("Root title= \(title)")
                         }
                         // one tntry
                         if let entry = jsonDicObj!["entry"] as? [String : Any] {
+                            //id
+                            if let idString = entry["id"] as? String {
+                                self?.alertFeeds?.idString?.append(idString)
+                                print("ID= \(idString)")
+                            }
                             //title
                             if let title = entry["title"] as? String {
-//                                self?.title?.append(title)
+                                self?.alertFeeds?.title?.append(title)
                                 print("Title= \(title)")
                             }
+                            //summary
+//                            if let summary = entry["summary"] as? [String : String] {                                 self?.alertFeeds?.entries.summary?.append(summary["#text"]!)
+//                                print("Summary= \(summary["#text"])")
+//                            }
+                            //updated
+//                            if let updated = entry["updated"] as? String {
+//                                self?.alertFeeds?.updated?.append(updated)
+//                                print("Updated= \(updated)")
+//                            }
                         }
                         
                         // entris
