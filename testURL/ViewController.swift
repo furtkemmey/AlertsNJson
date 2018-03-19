@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        alertJson = AlertJson(URLString: "https://alerts.ncdr.nat.gov.tw/JSONAtomFeeds.ashx")
-        alertJson = AlertJson(URLString: "http://192.168.192.154:3000")
+        alertJson = AlertJson(URLString: "http://192.168.192.154:3000/JSONFeeds2")
         alertJson?.delegate = self
     }
 

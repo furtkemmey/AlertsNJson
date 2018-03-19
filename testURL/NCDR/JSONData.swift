@@ -42,68 +42,26 @@ class AlertJson: NSObject {
                             self?.alertFeeds?.title = title
 //                            print("Root title= \(title)")
                         }
-                        // one tntry
-                        if let entry = jsonDicObj!["entry"] as? [String : Any] {
-                            var entryTemp = Entry()
-                            //id
-                            if let idString = entry["id"] as? String {
-                                entryTemp.idString = idString
-//                                print("ID= \(idString)")
-                            }
-                            //title
-                            if let title = entry["title"] as? String {
-                                entryTemp.title = title
-//                                print("Title= \(title)")
-                            }
-                            //updated
-                            if let updated = entry["updated"] as? String {
-                                entryTemp.updated = updated
-//                                print("Updated= \(updated)")
-                            }
-                            // author
-                            if let author = entry["author"] as? [String : String] {
-                                entryTemp.author = author["name"]
-                            }
-                            // summary
-                            if let summary = entry["summary"] as? [String : String] {
-                                entryTemp.summary = summary["#text"]
-//                                print("Summary= \(String(describing: summary["#text"]))")
-                            }
-                            // category
-                            if let category = entry["category"] as? [String : String] {
-                                entryTemp.category = category["@term"]
-                            }
-                            self?.alertFeeds?.entries?.append(entryTemp)
-                        }
-                        
-                        // entris
-                        if let entries = jsonDicObj!["entry"] as? [[String : Any]] {
-                            
+                        switch jsonDicObj!["entry"] {
+                        case let entry as [String : Any]:
+                                self?.analysisEntry(entry: entry)
+                        case let entries as [[String : Any]]:
                             for entry in entries {
-                                //id
-                                if let idString = entry["id"] as? String {
-//                                    self?.idString?.append(idString)
-                                    print("ID= \(idString)")
-                                }
-                                //title
-                                if let title = entry["title"] as? String {
-//                                    self?.title?.append(title)
-                                    print("Title= \(title)")
-                                }
-                                //summary
-                                if let summary = entry["summary"] as? [String : String] {
-//                                    self?.summary?.append(summary["#text"]!)
-        //                            print("Summary= \(summary["#text"])")
-                                }
-                                //updated
-                                if let updated = entry["updated"] as? String {
-//                                    self?.updated?.append(updated)
-        //                            print("Updated= \(updated)")
-                                }
-        //                        print("-----------------------------------------")
-                                
+                                self?.analysisEntry(entry: entry)
                             }
+                        default:
+                            print("")
                         }
+//                        // one tntry
+//                        if let entry = jsonDicObj!["entry"] as? [String : Any] {
+//                            self?.analysisEntry(entry: entry)
+//                        }
+//                        // entris
+//                        if let entries = jsonDicObj!["entry"] as? [[String : Any]] {
+//                            for entry in entries {
+//                                self?.analysisEntry(entry: entry)
+//                            }
+//                        }
                     } else { // if let data = data, url == self?.urlJson
                         print("Error...")
                     }
@@ -115,6 +73,38 @@ class AlertJson: NSObject {
             return false
         }
         return true
+    }
+    func analysisEntry(entry:  [String : Any] ) {
+        var entryTemp = Entry()
+        //id
+        if let idString = entry["id"] as? String {
+            entryTemp.idString = idString
+            //                                print("ID= \(idString)")
+        }
+        //title
+        if let title = entry["title"] as? String {
+            entryTemp.title = title
+            //                                print("Title= \(title)")
+        }
+        //updated
+        if let updated = entry["updated"] as? String {
+            entryTemp.updated = updated
+            //                                print("Updated= \(updated)")
+        }
+        // author
+        if let author = entry["author"] as? [String : String] {
+            entryTemp.author = author["name"]
+        }
+        // summary
+        if let summary = entry["summary"] as? [String : String] {
+            entryTemp.summary = summary["#text"]
+            //                                print("Summary= \(String(describing: summary["#text"]))")
+        }
+        // category
+        if let category = entry["category"] as? [String : String] {
+            entryTemp.category = category["@term"]
+        }
+        alertFeeds?.entries?.append(entryTemp)
     }
 }
 struct AlertFeeds {
