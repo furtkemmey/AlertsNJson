@@ -24,6 +24,10 @@ struct UserDeaultCategoryNSynchronize {
         for key in CategorRootKye {
             dicCategoryRootKye.updateValue(false, forKey: key)
         }
+        //default value
+        dicCategoryRootKye.updateValue(true, forKey: Cateory.earthquake.rawValue)
+        dicCategoryRootKye.updateValue(true, forKey: Cateory.Typhoon.rawValue)
+        dicCategoryRootKye.updateValue(true, forKey: Cateory.workSchlClos.rawValue)
         self.getDataFromUserDefault()
     }
     mutating func getDataFromUserDefault() {
