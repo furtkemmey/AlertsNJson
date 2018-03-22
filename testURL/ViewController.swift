@@ -12,15 +12,24 @@ import UIKit
 class ViewController: UIViewController {
     var alertJson: AlertJson?
     
-    // MARK: - Network methods
-    // FIXME: Cannt get data
+    
+    
+    // MARK: - IBAction
     @IBAction func buttonClick(_ sender: UIButton) {
+        let userDefaultDic = UserDeaultCategoryNSynchronize()
+//        if let dic = userDefaultDic.dicCategoryRootKye  {
+            for (dicKey,dicValue) in userDefaultDic.dicCategoryRootKye {
+                print("key = \(dicKey) \(dicValue)")
+            }
+//        }
 
     }
     @IBAction func buttonClick2(_ sender: UIButton) {
-        printLog("printLog test")
+        
+//        printLog("printLog test \(userDefault.bool(forKey: userName) )")
         
     }
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
 //        alertJson = AlertJson(URLString: "https://alerts.ncdr.nat.gov.tw/JSONAtomFeeds.ashx")

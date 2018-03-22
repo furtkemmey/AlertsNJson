@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		153D385F202DD0BE0037FE57 /* JSONData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153D385E202DD0BE0037FE57 /* JSONData.swift */; };
+		15F714C92063BBBD00FAAD9E /* EventCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F714C82063BBBD00FAAD9E /* EventCode.swift */; };
 		722597E6202D416700BD0D26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722597E5202D416700BD0D26 /* AppDelegate.swift */; };
 		722597E8202D416700BD0D26 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722597E7202D416700BD0D26 /* ViewController.swift */; };
 		722597EB202D416700BD0D26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 722597E9202D416700BD0D26 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		153D385E202DD0BE0037FE57 /* JSONData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONData.swift; sourceTree = "<group>"; };
+		15F714C82063BBBD00FAAD9E /* EventCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCode.swift; sourceTree = "<group>"; };
 		722597E2202D416700BD0D26 /* testURL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testURL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		722597E5202D416700BD0D26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		722597E7202D416700BD0D26 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 		722597E4202D416700BD0D26 /* testURL */ = {
 			isa = PBXGroup;
 			children = (
+				15F714C82063BBBD00FAAD9E /* EventCode.swift */,
 				722597E7202D416700BD0D26 /* ViewController.swift */,
 				722597E9202D416700BD0D26 /* Main.storyboard */,
 				153D386C202DD1680037FE57 /* NCDR */,
@@ -158,6 +161,7 @@
 				722597E8202D416700BD0D26 /* ViewController.swift in Sources */,
 				722597E6202D416700BD0D26 /* AppDelegate.swift in Sources */,
 				153D385F202DD0BE0037FE57 /* JSONData.swift in Sources */,
+				15F714C92063BBBD00FAAD9E /* EventCode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
