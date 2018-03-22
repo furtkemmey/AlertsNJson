@@ -22,44 +22,54 @@ struct UserDeaultCategoryNSynchronize {
     var dicCategoryRootKye = [String : Bool]()
     init() {
         for key in CategorRootKye {
-//            dicCategoryRootKye[key] = false
             dicCategoryRootKye.updateValue(false, forKey: key)
         }
+        self.getDataFromUserDefault()
     }
-    mutating func getDataFromUserDefault(){
-//        self.earthquake = userDefault.bool(forKey: CategoryRootKey.earthquake)
+    mutating func getDataFromUserDefault() {
+        for (key,_) in dicCategoryRootKye {
+            let value  = userDefault.bool(forKey: key)
+            dicCategoryRootKye.updateValue(value, forKey: key)
+        }
     }
-    mutating func backDataToUserDefault(){
-        //        userDefault.set(true, forKey: userName)
-        //        userDefault.synchronize()
+    mutating func backDataToUserDefault() {
+        for (key,value) in dicCategoryRootKye {
+            userDefault.set(value, forKey: key)
+        }
+        userDefault.synchronize()
     }
-
+    mutating func update(value: Bool, forKey: Cateory) {
+        userDefault.set(value, forKey: forKey.rawValue)
+    }
+    func getDate(fromkey: Cateory ) -> Bool? {
+        return userDefault.bool(forKey: fromkey.rawValue)
+    }
 }
-//struct CategoryRootKey {
-//    static let earthquake = "earthquake"
-//    static let debrisFlow = "debrisFlow"
-//    static let tsunami = "tsunami"
-//
-//    static let Typhoon = "Typhoon"
-//    static let rainfall = "debrisFlow"
-//    static let flood = "flood"
-//    static let highWater = "highWater"
-//    static let coldSurge = "coldSurge"
-//    static let denseFog = "denseFog"
-//    static let strongWind = "strongWind"
-//    static let Thunderstorm = "Thunderstorm"
-//    static let highwater = "highwater"
-//
-//    static let airRaidAlert = "airRaidAlert"
-//
-//    static let communicable = "communicable"
-//
-//    static let railIncident = "railIncident"
-//    static let roadClose = "roadClose"
-//    static let Parking = "Parking"
-//
-//    static let workSchlClos = "workSchlClos"
-//    static let ReservoirDis = "ReservoirDis"
-//    static let GatesInfo = "GatesInfo"
-//}
+enum Cateory: String {
+    case earthquake = "earthquake"
+    case debrisFlow = "debrisFlow"
+    case tsunami = "tsunami"
+    
+    case Typhoon = "Typhoon"
+    case rainfall = "rainfall"
+    case flood = "flood"
+    case highWater = "highWater"
+    case coldSurge = "coldSurge"
+    case denseFog = "denseFog"
+    case strongWind = "strongWind"
+    case Thunderstorm = "Thunderstorm"
+    case highwater = "highwater"
+    
+    case airRaidAlert = "airRaidAlert"
+    
+    case communicable = "communicable"
+    
+    case railIncident = "railIncident"
+    case roadClose = "roadClose"
+    case Parking = "Parking"
+    
+    case workSchlClos = "workSchlClos"
+    case ReservoirDis = "ReservoirDis"
+    case GatesInfo = "GatesInfo"
+}
 

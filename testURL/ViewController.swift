@@ -16,19 +16,16 @@ class ViewController: UIViewController {
     
     // MARK: - IBAction
     @IBAction func buttonClick(_ sender: UIButton) {
-        let userDefaultDic = UserDeaultCategoryNSynchronize()
-//        if let dic = userDefaultDic.dicCategoryRootKye  {
-            for (dicKey,dicValue) in userDefaultDic.dicCategoryRootKye {
-                print("key = \(dicKey) \(dicValue)")
-            }
-//        }
-
+        var category = UserDeaultCategoryNSynchronize()
+        category.update(value: true, forKey: .earthquake)
+        print(category.getDate(fromkey: .earthquake)!)
+        category.backDataToUserDefault()
     }
     @IBAction func buttonClick2(_ sender: UIButton) {
-        
-//        printLog("printLog test \(userDefault.bool(forKey: userName) )")
-        
+        var category = UserDeaultCategoryNSynchronize()
+        print(category.getDate(fromkey: .earthquake)!)
     }
+    
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
