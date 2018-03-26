@@ -16,22 +16,28 @@ class ViewController: UIViewController {
     
     // MARK: - IBAction
     @IBAction func buttonClick(_ sender: UIButton) {
-        var category = UserDeaultCategoryNSynchronize()
-        category.update(value: true, forKey: .earthquake)
-        print(category.getDate(fromkey: .earthquake)!)
-        category.backDataToUserDefault()
+        var category = UserDeaultCategory()
+
+        print(UserDefaults.Cateory.getkeystring(forKey: .earthquake))
+        print(UserDefaults.Cateory.bool(forKey: .earthquake))
+        print(UserDefaults.Cateory.getkeystring(forKey: .airRaidAlert))
+        print(UserDefaults.Cateory.bool(forKey: .airRaidAlert))
+        UserDefaults.Cateory.set(value: true, for: .airRaidAlert)
+        UserDefaults.standard.synchronize()
+        print(UserDefaults.Cateory.bool(forKey: .airRaidAlert))
     }
     @IBAction func buttonClick2(_ sender: UIButton) {
-        var category = UserDeaultCategoryNSynchronize()
-        print(category.getDate(fromkey: .earthquake)!)
+//        var category = UserDeaultCategoryNSynchronize()
+//        print(category.getDate(fromkey: .earthquake)!)
+//        print(category)
     }
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
 //        alertJson = AlertJson(URLString: "https://alerts.ncdr.nat.gov.tw/JSONAtomFeeds.ashx")
-        alertJson = AlertJson(URLString: "http://192.168.192.154:3000/JSONFeeds2")
-        alertJson?.delegate = self
+//        alertJson = AlertJson(URLString: "http://192.168.192.154:3000/JSONFeeds2")
+//        alertJson?.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
