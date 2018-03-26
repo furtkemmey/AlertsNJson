@@ -9,17 +9,18 @@
 import Foundation
 
 let userDefault = UserDefaults.standard
-let CategorRootKye = ["earthquake","debrisFlow","tsunami",
-                      "Typhoon","debrisFlow","flood",
-                      "highWater","coldSurge","denseFog",
-                      "strongWind","Thunderstorm","highwater",
-                      "airRaidAlert","communicable","railIncident",
-                      "roadClose","Parking","workSchlClos",
-                      "ReservoirDis","GatesInfo"
-    
-                    ]
+
 struct UserDeaultCategoryNSynchronize {
     var dicCategoryRootKye = [String : Bool]()
+    let CategorRootKye = [Cateory.earthquake.rawValue, Cateory.debrisFlow.rawValue,Cateory.tsunami.rawValue,
+                          Cateory.Typhoon.rawValue, Cateory.rainfall.rawValue,Cateory.flood.rawValue,
+                          Cateory.highWater.rawValue, Cateory.coldSurge.rawValue,Cateory.denseFog.rawValue,
+                          Cateory.strongWind.rawValue, Cateory.Thunderstorm.rawValue,Cateory.highwater.rawValue,
+                          Cateory.airRaidAlert.rawValue, Cateory.communicable.rawValue,Cateory.railIncident.rawValue,
+                          Cateory.roadClose.rawValue, Cateory.Parking.rawValue,Cateory.workSchlClos.rawValue,
+                          Cateory.ReservoirDis.rawValue, Cateory.GatesInfo.rawValue
+                        ]
+    var vateory = Cateory.earthquake.rawValue
     init() {
         for key in CategorRootKye {
             dicCategoryRootKye.updateValue(false, forKey: key)
@@ -76,4 +77,14 @@ enum Cateory: String {
     case ReservoirDis = "ReservoirDis"
     case GatesInfo = "GatesInfo"
 }
+
+//extension UserDeaultCategoryNSynchronize : CustomStringConvertible {
+//    var description: String {
+//        var temp = String()
+//        for (key,value) in dicCategoryRootKye {
+//            temp += String(format: "key %s = %@ \n", key, String(value))
+//        }
+//        return temp
+//    }
+//}
 
