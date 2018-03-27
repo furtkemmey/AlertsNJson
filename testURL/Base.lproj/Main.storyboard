@@ -59,31 +59,32 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UAj-3K-umi">
-                                            <rect key="frame" x="79" y="39.5" width="43.5" height="21"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                            <color key="textColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calamityIcon150Black_AR" translatesAutoresizingMaskIntoConstraints="NO" id="Mij-WS-6CC">
-                                            <rect key="frame" x="16" y="20" width="55" height="60"/>
+                                            <rect key="frame" x="20" y="20" width="55" height="60"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R27-19-G1I">
-                                            <rect key="frame" x="322" y="63.5" width="33" height="16"/>
+                                            <rect key="frame" x="322" y="73.5" width="33" height="16"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                             <color key="textColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UAj-3K-umi">
+                                            <rect key="frame" x="83" y="20" width="43.5" height="21"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="UAj-3K-umi" firstAttribute="centerY" secondItem="tCU-ID-Bvb" secondAttribute="centerY" id="JHD-OO-gFy"/>
-                                        <constraint firstAttribute="bottom" secondItem="R27-19-G1I" secondAttribute="bottom" constant="20" symbolic="YES" id="U7p-aE-Acd"/>
-                                        <constraint firstItem="Mij-WS-6CC" firstAttribute="leading" secondItem="tCU-ID-Bvb" secondAttribute="leading" constant="16" id="bYG-Pd-hnP"/>
+                                        <constraint firstAttribute="bottom" secondItem="Mij-WS-6CC" secondAttribute="bottom" constant="19.5" id="EUJ-9B-8xG"/>
+                                        <constraint firstItem="UAj-3K-umi" firstAttribute="top" secondItem="tCU-ID-Bvb" secondAttribute="top" constant="20" symbolic="YES" id="NGQ-b3-JIf"/>
+                                        <constraint firstAttribute="bottom" secondItem="R27-19-G1I" secondAttribute="bottom" constant="10" id="U7p-aE-Acd"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="UAj-3K-umi" secondAttribute="trailing" constant="20" symbolic="YES" id="VKk-u6-y0D"/>
                                         <constraint firstItem="R27-19-G1I" firstAttribute="leading" relation="lessThanOrEqual" secondItem="tCU-ID-Bvb" secondAttribute="leading" constant="328" id="fFP-gc-gnA"/>
-                                        <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="UAj-3K-umi" secondAttribute="trailing" constant="252.5" id="mdM-6E-7HZ"/>
-                                        <constraint firstItem="UAj-3K-umi" firstAttribute="leading" secondItem="Mij-WS-6CC" secondAttribute="trailing" constant="8" symbolic="YES" id="pQw-Xy-5Kh"/>
+                                        <constraint firstItem="Mij-WS-6CC" firstAttribute="leading" secondItem="tCU-ID-Bvb" secondAttribute="leading" constant="20" symbolic="YES" id="mbh-D4-AL9"/>
                                         <constraint firstAttribute="trailing" secondItem="R27-19-G1I" secondAttribute="trailing" constant="20" symbolic="YES" id="qWa-6w-nIR"/>
-                                        <constraint firstItem="Mij-WS-6CC" firstAttribute="centerY" secondItem="tCU-ID-Bvb" secondAttribute="centerY" id="vsb-GO-3gC"/>
+                                        <constraint firstItem="Mij-WS-6CC" firstAttribute="top" secondItem="tCU-ID-Bvb" secondAttribute="top" constant="20" symbolic="YES" id="s5p-4G-eSp"/>
+                                        <constraint firstAttribute="bottom" secondItem="UAj-3K-umi" secondAttribute="bottom" constant="58.5" id="uuT-uk-pky"/>
+                                        <constraint firstItem="UAj-3K-umi" firstAttribute="leading" secondItem="Mij-WS-6CC" secondAttribute="trailing" constant="8" id="vNi-0P-3Ob"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
