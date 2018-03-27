@@ -62,7 +62,7 @@ extension UserDefaultsSettable where defaultKeys.RawValue == String {
         let keyString = key.rawValue
         UserDefaults.standard.set(value, forKey: keyString)
     }
-    static func bool(forKey key: defaultKeys) -> Bool? {
+    static func bool(forKey key: defaultKeys) -> Bool {
         let keyString = key.rawValue
         return UserDefaults.standard.bool(forKey: keyString)
     }

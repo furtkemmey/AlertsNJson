@@ -97,7 +97,7 @@ class AlertJson: NSObject {
         }
         // summary
         if let summary = entry["summary"] as? [String : String] {
-            entryTemp.summary = summary["#text"]
+            entryTemp.summary = summary["#text"]?.trimmingCharacters(in: .whitespaces)
             //                                print("Summary= \(String(describing: summary["#text"]))")
         }
         // category
@@ -131,9 +131,17 @@ struct Entry {
     var author: String?
     var summary: String?
     var category: String?
+    var city: String? {
+        if self.summary != nil {
+            return self.summary!.components(separatedBy: " ").first?.trimmingCharacters(in: .whitespacesAndNewlines)
+//            return "333"
+        }
+        return nil
+    }
 }
 extension Entry : CustomStringConvertible {
     var description: String {
         return "idString = \(String(describing: self.idString))\n title = \(String(describing: self.title))\n updated = \(String(describing: self.updated)),author = \(String(describing: self.author))\n,summary = \(String(describing: self.summary))\n,category = \(String(describing: self.category))\n"
     }
 }
+
