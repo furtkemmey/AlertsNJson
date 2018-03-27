@@ -95,6 +95,10 @@ class AlertJson: NSObject {
         if let author = entry["author"] as? [String : String] {
             entryTemp.author = author["name"]
         }
+        // Link
+        if let author = entry["link"] as? [String : String] {
+            entryTemp.linkHref = author["@href"]
+        }
         // summary
         if let summary = entry["summary"] as? [String : String] {
             entryTemp.summary = summary["#text"]?.trimmingCharacters(in: .whitespaces)
@@ -129,19 +133,19 @@ struct Entry {
     var title: String?
     var updated: String?
     var author: String?
+    var linkHref: String?
     var summary: String?
     var category: String?
     var city: String? {
         if self.summary != nil {
             return self.summary!.components(separatedBy: " ").first?.trimmingCharacters(in: .whitespacesAndNewlines)
-//            return "333"
         }
         return nil
     }
 }
 extension Entry : CustomStringConvertible {
     var description: String {
-        return "idString = \(String(describing: self.idString))\n title = \(String(describing: self.title))\n updated = \(String(describing: self.updated)),author = \(String(describing: self.author))\n,summary = \(String(describing: self.summary))\n,category = \(String(describing: self.category))\n"
+        return "idString = \(String(describing: self.idString))\n title = \(String(describing: self.title))\n updated = \(String(describing: self.updated)),author = \(String(describing: self.author))\n,href = \(String(describing: self.linkHref))\n,summary = \(String(describing: self.summary))\n,category = \(String(describing: self.category))\n"
     }
 }
 

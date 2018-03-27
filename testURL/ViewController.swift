@@ -35,7 +35,8 @@ class ViewController: UIViewController {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        alertJson = AlertJson(URLString: "https://alerts.ncdr.nat.gov.tw/JSONAtomFeeds.ashx")
+//        alertJson = AlertJson(URLString: "https://alerts.ncdr.nat.gov.tw/JSONAtomFeeds.ashx")
+        alertJson = AlertJson(URLString: "https://alerts.ncdr.nat.gov.tw/JSONAtomFeed.ashx")
 //        alertJson = AlertJson(URLString: "http://192.168.192.154:3000/JSONFeeds.ashx")
         alertJson?.delegate = self
     }
@@ -58,8 +59,8 @@ extension ViewController {
 extension ViewController: AlertJSONDelegate {
     func AlertJSON(_ alertJSON: AlertJson?, didLoad feeds: AlertFeeds?, and entry: [Entry]?) {
         printLog("AlertJSONDelegate call")
-        printLog("\(String(describing: feeds))")
-        printLog("\(String(describing: entry?.first?.city))")
+//        printLog("\(String(describing: feeds))")
+        printLog("\(String(describing: entry?.first))")
     }
 }
 
