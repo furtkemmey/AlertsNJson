@@ -19,6 +19,7 @@ class TableViewControllerShow: UITableViewController {
         tableView.separatorStyle = .none // no separator
         alertJson = AlertJson(URLString: "https://alerts.ncdr.nat.gov.tw/JSONAtomFeed.ashx")
         alertJson?.delegate = self
+//        self.title = "test title"
     }
     override func viewDidAppear(_ animated: Bool) {
         for (key,value) in (userDeaultCategory?.dicCategoryRootKye)! {
