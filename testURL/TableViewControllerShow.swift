@@ -11,6 +11,8 @@ import UIKit
 class TableViewControllerShow: UITableViewController {
     var alertJson: AlertJson?
     var entry: [Entry]?
+    var userDeaultCategory: UserDeaultCategory? = UserDeaultCategory()
+    var currentRow = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,9 +20,17 @@ class TableViewControllerShow: UITableViewController {
         alertJson = AlertJson(URLString: "https://alerts.ncdr.nat.gov.tw/JSONAtomFeed.ashx")
         alertJson?.delegate = self
     }
+    override func viewDidAppear(_ animated: Bool) {
+        for (key,value) in (userDeaultCategory?.dicCategoryRootKye)! {
+            print("key is \(key) \(value)")
+        }
+
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        userDeaultCategory?.backDataToUserDefault()
+    }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -38,60 +48,28 @@ class TableViewControllerShow: UITableViewController {
         }
         return cell
     }
-
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.currentRow = indexPath.row
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    // MARK: - prepare for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let identifier = segue.identifier {
+            switch identifier {
+            case "showSummary":
+                if  let seguedToMVC = segue.destination as? ViewController {
+                    seguedToMVC.entry = alertJson?.alertFeeds?.entries?[currentRow]
+                }
+            default: break
+            }
+        }
     }
-    */
-
 }
 
 extension TableViewControllerShow: AlertJSONDelegate {
     func AlertJSON(_ alertJSON: AlertJson?, didLoad feeds: AlertFeeds?, and entry: [Entry]?) {
-        print("AlertJSONDelegate call")
+//        print("AlertJSONDelegate call")
         //        printLog("\(String(describing: feeds))")
-        print("\(String(describing: entry?.first))")
+//        print("\(String(describing: entry?.first))")
         self.entry = entry
         DispatchQueue.main.async {
             self.tableView.reloadData()

@@ -10,58 +10,27 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var alertJson: AlertJson?
-    
-    
-    
+    var entry: Entry?
+
+
+    // MARK: - IBOutlet
+    @IBOutlet weak var outletTextView: UITextView!
+    @IBOutlet weak var outletButton: UIButton!
+
     // MARK: - IBAction
     @IBAction func buttonClick(_ sender: UIButton) {
-        var category = UserDeaultCategory()
-
-        print(UserDefaults.Cateory.getkeystring(forKey: .earthquake))
-        print(UserDefaults.Cateory.bool(forKey: .earthquake))
-        print(UserDefaults.Cateory.getkeystring(forKey: .airRaidAlert))
-        print(UserDefaults.Cateory.bool(forKey: .airRaidAlert))
-        UserDefaults.Cateory.set(value: true, for: .airRaidAlert)
-        UserDefaults.standard.synchronize()
-        print(UserDefaults.Cateory.bool(forKey: .airRaidAlert))
-    }
-    @IBAction func buttonClick2(_ sender: UIButton) {
-//        var category = UserDeaultCategoryNSynchronize()
-//        print(category.getDate(fromkey: .earthquake)!)
-//        print(category)
+        print("outletButton.titleLabel?.text = \(sender.currentTitle)")
     }
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-//        alertJson = AlertJson(URLString: "https://alerts.ncdr.nat.gov.tw/JSONAtomFeeds.ashx")
-        alertJson = AlertJson(URLString: "https://alerts.ncdr.nat.gov.tw/JSONAtomFeed.ashx")
-//        alertJson = AlertJson(URLString: "http://192.168.192.154:3000/JSONFeeds.ashx")
-        alertJson?.delegate = self
+        outletTextView.text = entry?.summary
+        outletButton.setTitle(entry?.title, for: .normal)
+
+    }
+    override func viewWillAppear(_ animated: Bool) {
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-}
-extension ViewController {
-    func printLog<T>(_ message: T, file: String = #file, method: String = #function, line: Int = #line){
-        #if DEBUG
-//            print("\((file as NSString).lastPathComponent)-> \(method)(\(line)): \(message)")
-            debugPrint("Line:\(line) \(method)(): \(message)")
-        #else
-            print("Line:\(line) \(method)(): \(message)")
-        #endif
-    }
-}
-extension ViewController: AlertJSONDelegate {
-    func AlertJSON(_ alertJSON: AlertJson?, didLoad feeds: AlertFeeds?, and entry: [Entry]?) {
-        printLog("AlertJSONDelegate call")
-//        printLog("\(String(describing: feeds))")
-        printLog("\(String(describing: entry?.first))")
-    }
-}
 
-
+}

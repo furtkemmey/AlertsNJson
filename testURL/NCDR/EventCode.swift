@@ -14,25 +14,22 @@ struct UserDeaultCategory: CustomStringConvertible {
     var dicCategoryRootKye = [String : Bool]()
 
     init() {
-//        for key in CategorRootKye {
-//            dicCategoryRootKye.updateValue(false, forKey: key)
-//            userDefault.register(defaults: [key: false])
-//        }
+        for key in CategorRootKye {
+            dicCategoryRootKye.updateValue(true, forKey: key)
+        }
         //default value
         userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .earthquake): true])
         userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .Typhoon): true])
         userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .workSchlClos): true])
-//        dicCategoryRootKye.updateValue(true, forKey: Cateory.earthquake.rawValue)
-//        dicCategoryRootKye.updateValue(true, forKey: Cateory.Typhoon.rawValue)
-//        dicCategoryRootKye.updateValue(true, forKey: Cateory.workSchlClos.rawValue)
-//        self.getDataFromUserDefault()
+
+        self.getDataFromUserDefault()
     }
-//    mutating func getDataFromUserDefault() {
-//        for (key,_) in dicCategoryRootKye {
-//            let value  = UserDefaults.Cateory.bool(forKey: UserDefaults.Cateory.defaultKeys(rawValue: key)!)
-//            dicCategoryRootKye.updateValue(value!, forKey: key)
-//        }
-//    }
+    mutating func getDataFromUserDefault() {
+        for (key,_) in dicCategoryRootKye {
+            let value  = UserDefaults.Cateory.bool(forKey: UserDefaults.Cateory.defaultKeys(rawValue: key)!)
+            dicCategoryRootKye.updateValue(value, forKey: key)
+        }
+    }
     mutating func backDataToUserDefault() {
         for (key,value) in dicCategoryRootKye {
             UserDefaults.Cateory.set(value: value, for: UserDefaults.Cateory.defaultKeys(rawValue: key)!)
@@ -53,6 +50,33 @@ struct UserDeaultCategory: CustomStringConvertible {
         }
         return temp
     }
+    let CategorRootKye = [
+                             UserDefaults.Cateory.getkeystring(forKey: .earthquake),
+                             UserDefaults.Cateory.getkeystring(forKey: .debrisFlow),
+                             UserDefaults.Cateory.getkeystring(forKey: .tsunami),
+
+                             UserDefaults.Cateory.getkeystring(forKey: .Typhoon),
+                             UserDefaults.Cateory.getkeystring(forKey: .rainfall ),
+                             UserDefaults.Cateory.getkeystring(forKey: .flood ),
+                             UserDefaults.Cateory.getkeystring(forKey: .highWater ),
+                             UserDefaults.Cateory.getkeystring(forKey: .coldSurge ),
+                             UserDefaults.Cateory.getkeystring(forKey: .denseFog ),
+                             UserDefaults.Cateory.getkeystring(forKey: .strongWind ),
+                             UserDefaults.Cateory.getkeystring(forKey: .Thunderstorm ),
+                             UserDefaults.Cateory.getkeystring(forKey: .highwater ),
+
+                             UserDefaults.Cateory.getkeystring(forKey: .airRaidAlert ),
+
+                             UserDefaults.Cateory.getkeystring(forKey: .communicable ),
+
+                             UserDefaults.Cateory.getkeystring(forKey: .railIncident ),
+                             UserDefaults.Cateory.getkeystring(forKey: .roadClose ),
+                             UserDefaults.Cateory.getkeystring(forKey: .Parking ),
+
+                             UserDefaults.Cateory.getkeystring(forKey: .workSchlClos ),
+                             UserDefaults.Cateory.getkeystring(forKey: .ReservoirDis ),
+                             UserDefaults.Cateory.getkeystring(forKey: .GatesInfo ),
+                         ]
 }
 protocol UserDefaultsSettable {
     associatedtype defaultKeys: RawRepresentable

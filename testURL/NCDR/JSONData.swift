@@ -126,9 +126,9 @@ extension AlertFeeds : CustomStringConvertible {
 }
 
 struct Entry {
-    init() {
-        print("Entry init")
-    }
+//    init() {
+//        print("Entry init")
+//    }
     var idString: String?
     var title: String?
     var updated: String?
