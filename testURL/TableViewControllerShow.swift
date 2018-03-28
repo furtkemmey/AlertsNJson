@@ -12,7 +12,7 @@ class TableViewControllerShow: UITableViewController {
     var alertJson: AlertJson?
     var entry: [Entry]?
     var userDeaultCategory: UserDeaultCategory? = UserDeaultCategory()
-    var currentRow = 0
+//    var currentRow = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,21 +50,43 @@ class TableViewControllerShow: UITableViewController {
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.currentRow = indexPath.row
+//        self.currentRow = indexPath.row
+//        print("currentRow frome tableView \(currentRow)")
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     // MARK: - prepare for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
-            switch identifier {
-            case "showSummary":
-                if  let seguedToMVC = segue.destination as? ViewController {
-                    seguedToMVC.entry = alertJson?.alertFeeds?.entries?[currentRow]
+                switch identifier {
+                case "showSummary":
+                    if  let seguedToMVC = segue.destination as? ViewController {
+                        if let cell = sender as? TableViewCellShow,
+                            let indexPath = tableView.indexPath(for: cell) {
+                            seguedToMVC.entry = alertJson?.alertFeeds?.entries?[indexPath.row]
+                            print("currentRow from prepare is \(indexPath.row)")
+                        }
+                    }
+                default: break
                 }
-            default: break
-            }
         }
     }
 }
+//if let cell = sender as? MyTableViewCell,
+//    let indexPath = tableView.indexPath(for: cell),
+//    let seguedToMVC = segue.destination as? MyVC {
+//    seguedToMVC.publicAPI = data[indexPath.section][indexPath.row]
+//}
+
+extension UIViewController {
+    var contents: UIViewController {
+        if let navcon = self as? UINavigationController {
+            return navcon.visibleViewController ?? self
+        } else {
+            return self
+        }
+    }
+}
+
 
 extension TableViewControllerShow: AlertJSONDelegate {
     func AlertJSON(_ alertJSON: AlertJson?, didLoad feeds: AlertFeeds?, and entry: [Entry]?) {
