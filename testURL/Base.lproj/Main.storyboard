@@ -52,7 +52,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4337" y="175"/>
+            <point key="canvasLocation" x="4276" y="175"/>
         </scene>
         <!--NCDR-->
         <scene sceneID="CJf-UI-ucC">
@@ -123,6 +123,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="f5i-i6-KsJ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5gz-P2-T1Z">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
