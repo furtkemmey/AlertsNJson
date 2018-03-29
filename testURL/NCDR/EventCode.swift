@@ -19,6 +19,7 @@ struct UserDeaultCategory: CustomStringConvertible {
         }
         setDefaultRegister()
         self.getDataFromUserDefault()
+        print("self is\n\(self)")
     }
     mutating func getDataFromUserDefault() {
         for (key,_) in dicCategoryRootKye {
@@ -39,18 +40,19 @@ struct UserDeaultCategory: CustomStringConvertible {
 //        return userDefault.bool(forKey: fromkey.rawValue)
 //    }
     var description: String {
-        var temp = ""
+        var temp = "{\n"
         for (key,value) in dicCategoryRootKye {
 //            temp += String(format: "key %s = %s \n", String(key), String(value.description))
             temp += "\(key) : \(value) \n"
         }
+        temp += "}"
         return temp
     }
-    mutating func setDefaultRegister() {
+    func setDefaultRegister() {
         //default value
         userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .earthquake): true])
-        userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .Typhoon): true])
-        userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .workSchlClos): true])
+        userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .debrisFlow): true])
+        userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .tsunami): true])
 
         userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .Typhoon): true])
         userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .rainfall): true])

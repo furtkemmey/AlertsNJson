@@ -22,13 +22,13 @@ class TableViewControllerShow: UITableViewController {
 //        self.title = "test title"
     }
     override func viewDidAppear(_ animated: Bool) {
-        for (key,value) in (userDeaultCategory?.dicCategoryRootKye)! {
-            print("key is \(key) \(value)")
-        }
+//        for (key,value) in (userDeaultCategory?.dicCategoryRootKye)! {
+//            print("key is \(key) \(value)")
+//        }
 
     }
     override func viewWillDisappear(_ animated: Bool) {
-        userDeaultCategory?.backDataToUserDefault()
+//        userDeaultCategory?.backDataToUserDefault()
     }
 
     // MARK: - Table view data source
