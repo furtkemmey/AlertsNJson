@@ -17,11 +17,7 @@ struct UserDeaultCategory: CustomStringConvertible {
         for key in CategorRootKye {
             dicCategoryRootKye.updateValue(true, forKey: key)
         }
-        //default value
-        userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .earthquake): true])
-        userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .Typhoon): true])
-        userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .workSchlClos): true])
-
+        setDefaultRegister()
         self.getDataFromUserDefault()
     }
     mutating func getDataFromUserDefault() {
@@ -49,6 +45,34 @@ struct UserDeaultCategory: CustomStringConvertible {
             temp += "\(key) : \(value) \n"
         }
         return temp
+    }
+    mutating func setDefaultRegister() {
+        //default value
+        userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .earthquake): true])
+        userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .Typhoon): true])
+        userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .workSchlClos): true])
+
+        userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .Typhoon): true])
+        userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .rainfall): true])
+        userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .flood): true])
+        userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .highWater): true])
+        userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .coldSurge): true])
+        userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .denseFog): true])
+        userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .strongWind): true])
+        userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .Thunderstorm): true])
+        userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .highwater): true])
+
+        userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .airRaidAlert): true])
+
+        userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .communicable): true])
+
+        userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .railIncident): true])
+        userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .roadClose): true])
+        userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .Parking): true])
+
+        userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .workSchlClos): true])
+        userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .ReservoirDis): true])
+        userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .GatesInfo): true])
     }
     let CategorRootKye = [
                              UserDefaults.Cateory.getkeystring(forKey: .earthquake),
