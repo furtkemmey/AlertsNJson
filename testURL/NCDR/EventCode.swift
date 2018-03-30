@@ -11,24 +11,24 @@ import Foundation
 
 struct UserDeaultCategory: CustomStringConvertible {
     let userDefault = UserDefaults.standard
-    var dicCategoryRootKye = [String : Bool]()
+    var dicCategoryRootKey = [String : Bool]()
 
     init() {
         for key in CategorRootKye {
-            dicCategoryRootKye.updateValue(true, forKey: key)
+            dicCategoryRootKey.updateValue(true, forKey: key)
         }
         setDefaultRegister()
         self.getDataFromUserDefault()
         print("self is\n\(self)")
     }
     mutating func getDataFromUserDefault() {
-        for (key,_) in dicCategoryRootKye {
+        for (key,_) in dicCategoryRootKey {
             let value  = UserDefaults.Cateory.bool(forKey: UserDefaults.Cateory.defaultKeys(rawValue: key)!)
-            dicCategoryRootKye.updateValue(value, forKey: key)
+            dicCategoryRootKey.updateValue(value, forKey: key)
         }
     }
     mutating func backDataToUserDefault() {
-        for (key,value) in dicCategoryRootKye {
+        for (key,value) in dicCategoryRootKey {
             UserDefaults.Cateory.set(value: value, for: UserDefaults.Cateory.defaultKeys(rawValue: key)!)
         }
         userDefault.synchronize()
@@ -41,7 +41,7 @@ struct UserDeaultCategory: CustomStringConvertible {
 //    }
     var description: String {
         var temp = "{\n"
-        for (key,value) in dicCategoryRootKye {
+        for (key,value) in dicCategoryRootKey {
 //            temp += String(format: "key %s = %s \n", String(key), String(value.description))
             temp += "\(key) : \(value) \n"
         }

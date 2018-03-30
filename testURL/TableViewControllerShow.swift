@@ -10,8 +10,8 @@ import UIKit
 
 class TableViewControllerShow: UITableViewController {
     var alertJson: AlertJson?
-    var entry: [Entry]?
-    var userDeaultCategory: UserDeaultCategory? = UserDeaultCategory()
+    var entry: [Entry]? = [Entry]()
+//    var userDeaultCategory: UserDeaultCategory? = UserDeaultCategory()
 //    var currentRow = 0
 
     override func viewDidLoad() {
@@ -46,6 +46,7 @@ class TableViewControllerShow: UITableViewController {
         if let titleCell = cell as? TableViewCellShow {
             titleCell.lblTitle.text = entry?[indexPath.row].title
             titleCell.lblUpdated.text = entry?[indexPath.row].updated
+            titleCell.imageViewIcon.image = UIImage(named: "Typhoon")
         }
         return cell
     }
@@ -90,10 +91,17 @@ extension UIViewController {
 
 extension TableViewControllerShow: AlertJSONDelegate {
     func AlertJSON(_ alertJSON: AlertJson?, didLoad feeds: AlertFeeds?, and entry: [Entry]?) {
-//        print("AlertJSONDelegate call")
-        //        printLog("\(String(describing: feeds))")
-//        print("\(String(describing: entry?.first))")
-        self.entry = entry
+        for (value,key) in (alertJSON?.dicCategoryRootKeyFilter)! {
+            for ent in entry! {
+                if ent.keyTitle == nil { continue }
+                print("keyTitle \(ent.keyTitle!), value \(value)")
+                if ent.keyTitle! == value, key == true {
+                    self.entry?.append(ent)
+                }
+            }
+        }
+//        self.entry = entry
+
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }

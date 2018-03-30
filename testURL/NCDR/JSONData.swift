@@ -18,6 +18,14 @@ class AlertJson: NSObject {
     var alertFeeds: AlertFeeds?
     weak var delegate: AlertJSONDelegate?
 
+    lazy var userDeaultCategory: UserDeaultCategory? = UserDeaultCategory()
+    var dicCategoryRootKeyFilter: [String : Bool]? {
+        return userDeaultCategory?.dicCategoryRootKey.filter {
+            $0.value == true
+        }
+    }
+
+    
     init?(URLString: String) {
         super.init()
         urlJson = URL(string: URLString)
@@ -84,7 +92,7 @@ class AlertJson: NSObject {
         //title
         if let title = entry["title"] as? String {
             entryTemp.title = title
-            //                                print("Title= \(title)")
+//            entryTemp.keyTitle = keyTitle[title]
         }
         //updated
         if let updated = entry["updated"] as? String {
@@ -131,6 +139,12 @@ struct Entry {
 //    }
     var idString: String?
     var title: String?
+    var keyTitle: String? {
+        if title != nil {
+            return keyTitleList[title!]
+        }
+        return nil
+    }
     var updated: String?
     var author: String?
     var linkHref: String?
@@ -142,6 +156,34 @@ struct Entry {
         }
         return nil
     }
+
+    var keyTitleList:[String : String] = [
+        "地震" : UserDefaults.Cateory.getkeystring(forKey: .earthquake),
+        "土石流" :UserDefaults.Cateory.getkeystring(forKey: .debrisFlow),
+        "海嘯" : UserDefaults.Cateory.getkeystring(forKey: .tsunami),
+
+        "颱風" : UserDefaults.Cateory.getkeystring(forKey: .Typhoon),
+        "降雨" : UserDefaults.Cateory.getkeystring(forKey: .rainfall ),
+        "淹水" : UserDefaults.Cateory.getkeystring(forKey: .flood ),
+        "河川高水位" : UserDefaults.Cateory.getkeystring(forKey: .highWater ),
+        "低溫" : UserDefaults.Cateory.getkeystring(forKey: .coldSurge ),
+        "濃霧" : UserDefaults.Cateory.getkeystring(forKey: .denseFog ),
+        "強風" : UserDefaults.Cateory.getkeystring(forKey: .strongWind ),
+        "雷雨" : UserDefaults.Cateory.getkeystring(forKey: .Thunderstorm ),
+        "水位警戒" : UserDefaults.Cateory.getkeystring(forKey: .highwater ),
+
+        "防空" : UserDefaults.Cateory.getkeystring(forKey: .airRaidAlert ),
+
+        "國際旅遊疫情" : UserDefaults.Cateory.getkeystring(forKey: .communicable ),
+
+        "鐵路事故" : UserDefaults.Cateory.getkeystring(forKey: .railIncident ),
+        "道路封閉" : UserDefaults.Cateory.getkeystring(forKey: .roadClose ),
+        "開放臨時停車" : UserDefaults.Cateory.getkeystring(forKey: .Parking ),
+
+        "停班停課" : UserDefaults.Cateory.getkeystring(forKey: .workSchlClos ),
+        "水庫放流" : UserDefaults.Cateory.getkeystring(forKey: .ReservoirDis ),
+        "水門資訊" : UserDefaults.Cateory.getkeystring(forKey: .GatesInfo )
+    ]
 }
 extension Entry : CustomStringConvertible {
     var description: String {

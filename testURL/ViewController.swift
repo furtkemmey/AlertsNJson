@@ -19,7 +19,10 @@ class ViewController: UIViewController {
     // MARK: - IBOutlet
     @IBOutlet weak var outletTextView: UITextView!
     @IBOutlet weak var outletButton: UIButton!
-
+    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var lblUpdated: UILabel!
+    
     // MARK: - IBAction
     @IBAction func buttonClick(_ sender: UIButton) {
         let audioSession = AVAudioSession.sharedInstance()
@@ -51,7 +54,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         outletTextView.text = entry?.summary
-        outletButton.setTitle(entry?.title, for: .normal)
+        outletButton.setTitle("Speak", for: .normal)
+        lblTitle.text = entry?.title
+        lblName.text = entry?.author
+        lblUpdated.text = entry?.updated
+        
         
         synth = AVSpeechSynthesizer()
 
