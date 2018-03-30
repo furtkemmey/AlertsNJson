@@ -69,6 +69,18 @@ class ViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
     }
+    // MARK: - prepare for segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier {
+            switch identifier {
+            case "showMAP":
+                if  let seguedToMVC = segue.destination as? ViewControllerMapView {
+                        seguedToMVC.entry = entry
+                }
+            default: break
+            }
+        }
+    }
 
 
 }

@@ -76,7 +76,7 @@
                     <navigationItem key="navigationItem" title="Summary" id="p98-2q-D7m">
                         <barButtonItem key="rightBarButtonItem" title="🌏" style="plain" id="sLe-wp-CXC">
                             <connections>
-                                <segue destination="ezV-ef-QUb" kind="show" id="rnA-pB-2L3"/>
+                                <segue destination="ezV-ef-QUb" kind="show" identifier="showMAP" id="rnA-pB-2L3"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -202,7 +202,7 @@
         <!--MAP-->
         <scene sceneID="ZI3-Gc-Qes">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="ezV-ef-QUb" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="ezV-ef-QUb" customClass="ViewControllerMapView" customModule="testURL" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jja-Oc-9BB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
