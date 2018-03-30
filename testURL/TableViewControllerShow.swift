@@ -46,7 +46,8 @@ class TableViewControllerShow: UITableViewController {
         if let titleCell = cell as? TableViewCellShow {
             titleCell.lblTitle.text = entry?[indexPath.row].title
             titleCell.lblUpdated.text = entry?[indexPath.row].updated
-            titleCell.imageViewIcon.image = UIImage(named: "Typhoon")
+            titleCell.imageViewIcon.image = UIImage(named: (entry?[indexPath.row].keyTitle!)!)
+//            titleCell.imageViewIcon.image = UIImage(named: "Typhoon")
         }
         return cell
     }
