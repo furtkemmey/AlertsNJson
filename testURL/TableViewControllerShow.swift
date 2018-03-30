@@ -16,7 +16,7 @@ class TableViewControllerShow: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.separatorStyle = .none // no separator
+       // tableView.separatorStyle = .none // no separator
         alertJson = AlertJson(URLString: "https://alerts.ncdr.nat.gov.tw/JSONAtomFeed.ashx")
         alertJson?.delegate = self
 //        self.title = "test title"
