@@ -21,6 +21,7 @@ class TableViewControllerShow: UITableViewController {
         alertJson = AlertJson(URLString: URLStringAddress)
         alertJson?.delegate = self
 //        self.title = "test title"
+        
     }
 
     // MARK: - Table view data source
