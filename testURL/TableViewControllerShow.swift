@@ -9,6 +9,7 @@
 import UIKit
 
 class TableViewControllerShow: UITableViewController {
+    var URLStringAddress = "https://alerts.ncdr.nat.gov.tw/JSONAtomFeed.ashx"
     var alertJson: AlertJson?
     var entry: [Entry]? = [Entry]()
 //    var userDeaultCategory: UserDeaultCategory? = UserDeaultCategory()
@@ -17,18 +18,9 @@ class TableViewControllerShow: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        // tableView.separatorStyle = .none // no separator
-        alertJson = AlertJson(URLString: "https://alerts.ncdr.nat.gov.tw/JSONAtomFeed.ashx")
+        alertJson = AlertJson(URLString: URLStringAddress)
         alertJson?.delegate = self
 //        self.title = "test title"
-    }
-    override func viewDidAppear(_ animated: Bool) {
-//        for (key,value) in (userDeaultCategory?.dicCategoryRootKye)! {
-//            print("key is \(key) \(value)")
-//        }
-
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-//        userDeaultCategory?.backDataToUserDefault()
     }
 
     // MARK: - Table view data source
@@ -52,8 +44,6 @@ class TableViewControllerShow: UITableViewController {
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        self.currentRow = indexPath.row
-//        print("currentRow frome tableView \(currentRow)")
         tableView.deselectRow(at: indexPath, animated: true)
     }
     // MARK: - prepare for segue
@@ -73,11 +63,6 @@ class TableViewControllerShow: UITableViewController {
         }
     }
 }
-//if let cell = sender as? MyTableViewCell,
-//    let indexPath = tableView.indexPath(for: cell),
-//    let seguedToMVC = segue.destination as? MyVC {
-//    seguedToMVC.publicAPI = data[indexPath.section][indexPath.row]
-//}
 
 extension UIViewController {
     var contents: UIViewController {
@@ -95,13 +80,12 @@ extension TableViewControllerShow: AlertJSONDelegate {
         for (value,key) in (alertJSON?.dicCategoryRootKeyFilter)! {
             for ent in entry! {
                 if ent.keyTitle == nil { continue }
-                print("keyTitle \(ent.keyTitle!), value \(value)")
+//                print("keyTitle \(ent.keyTitle!), value \(value)")
                 if ent.keyTitle! == value, key == true {
                     self.entry?.append(ent)
                 }
             }
         }
-//        self.entry = entry
 
         DispatchQueue.main.async {
             self.tableView.reloadData()

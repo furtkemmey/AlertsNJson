@@ -245,27 +245,45 @@
         <!--About-->
         <scene sceneID="EkW-7Z-u7I">
             <objects>
-                <viewController id="eDg-e3-YQF" sceneMemberID="viewController">
+                <viewController id="eDg-e3-YQF" customClass="ViewControllerAbout" customModule="testURL" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9MG-Lx-Z4j">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="團隊成員" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jr4-Vi-nvU">
-                                <rect key="frame" x="147" y="323" width="81" height="21"/>
+                                <rect key="frame" x="147" y="456" width="81" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tvA-GP-PVY">
+                                <rect key="frame" x="103" y="128" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="Typhoon">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qGt-Wz-JqF">
+                                <rect key="frame" x="191" y="128" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="tsunami">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="L7Y-Bd-zWJ"/>
                     </view>
                     <navigationItem key="navigationItem" title="About" id="t05-sr-MkB"/>
+                    <connections>
+                        <outlet property="btnLeft" destination="tvA-GP-PVY" id="wCC-bl-5hq"/>
+                        <outlet property="btnRight" destination="qGt-Wz-JqF" id="wWd-KI-eD6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1d6-jf-0eN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3578" y="1904"/>
+            <point key="canvasLocation" x="3576.8000000000002" y="1903.8980509745129"/>
         </scene>
         <!--Item-->
         <scene sceneID="weZ-ug-zZy">
@@ -313,6 +331,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Typhoon" width="90" height="67"/>
         <image name="flood" width="72" height="66"/>
+        <image name="tsunami" width="94" height="48"/>
     </resources>
 </document>
