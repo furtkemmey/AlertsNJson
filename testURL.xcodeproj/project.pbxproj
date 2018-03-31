@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		152F57EE206F1A5B008A65F8 /* TableViewControllerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F57ED206F1A5B008A65F8 /* TableViewControllerConfig.swift */; };
+		152F57F0206F1B3C008A65F8 /* TableViewCellConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F57EF206F1B3C008A65F8 /* TableViewCellConfig.swift */; };
 		153D385F202DD0BE0037FE57 /* JSONData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153D385E202DD0BE0037FE57 /* JSONData.swift */; };
 		15F714C92063BBBD00FAAD9E /* EventCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F714C82063BBBD00FAAD9E /* EventCode.swift */; };
 		722597E6202D416700BD0D26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722597E5202D416700BD0D26 /* AppDelegate.swift */; };
@@ -21,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		152F57ED206F1A5B008A65F8 /* TableViewControllerConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewControllerConfig.swift; sourceTree = "<group>"; };
+		152F57EF206F1B3C008A65F8 /* TableViewCellConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellConfig.swift; sourceTree = "<group>"; };
 		153D385E202DD0BE0037FE57 /* JSONData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONData.swift; sourceTree = "<group>"; };
 		15F714C82063BBBD00FAAD9E /* EventCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCode.swift; sourceTree = "<group>"; };
 		722597E2202D416700BD0D26 /* testURL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testURL.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +94,8 @@
 				722597E7202D416700BD0D26 /* ViewController.swift */,
 				725B50DF206E1137004CC430 /* ViewControllerMapView.swift */,
 				725B50E1206E1BBF004CC430 /* ViewControllerAbout.swift */,
+				152F57ED206F1A5B008A65F8 /* TableViewControllerConfig.swift */,
+				152F57EF206F1B3C008A65F8 /* TableViewCellConfig.swift */,
 				722597E9202D416700BD0D26 /* Main.storyboard */,
 				153D386C202DD1680037FE57 /* NCDR */,
 				159F0F25202FE5270091B946 /* Supporting */,
@@ -171,9 +177,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				722597E8202D416700BD0D26 /* ViewController.swift in Sources */,
+				152F57EE206F1A5B008A65F8 /* TableViewControllerConfig.swift in Sources */,
 				725B50E0206E1137004CC430 /* ViewControllerMapView.swift in Sources */,
 				722597E6202D416700BD0D26 /* AppDelegate.swift in Sources */,
 				727FCE022069EBDB00EF6FDF /* TableViewCellShow.swift in Sources */,
+				152F57F0206F1B3C008A65F8 /* TableViewCellConfig.swift in Sources */,
 				727FCE002069EBBE00EF6FDF /* TableViewControllerShow.swift in Sources */,
 				153D385F202DD0BE0037FE57 /* JSONData.swift in Sources */,
 				725B50E2206E1BBF004CC430 /* ViewControllerAbout.swift in Sources */,

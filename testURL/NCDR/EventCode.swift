@@ -13,6 +13,7 @@ struct UserDeaultCategory: CustomStringConvertible {
     let userDefault = UserDefaults.standard
     var dicCategoryRootKey = [String : Bool]()
 
+
     init() {
         for key in CategorRootKye {
             dicCategoryRootKey.updateValue(true, forKey: key)

@@ -14,14 +14,17 @@ class TableViewControllerShow: UITableViewController {
     var entry: [Entry]? = [Entry]()
 //    var userDeaultCategory: UserDeaultCategory? = UserDeaultCategory()
 //    var currentRow = 0
-
+    
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
        // tableView.separatorStyle = .none // no separator
+        tableView.estimatedRowHeight = 80
+        tableView.rowHeight = UITableViewAutomaticDimension
         alertJson = AlertJson(URLString: URLStringAddress)
         alertJson?.delegate = self
 //        self.title = "test title"
-        
+    
     }
 
     // MARK: - Table view data source
@@ -32,15 +35,12 @@ class TableViewControllerShow: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (self.entry?.count) ?? 0
     }
-
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "titleCell", for: indexPath)
         if let titleCell = cell as? TableViewCellShow {
             titleCell.lblTitle.text = entry?[indexPath.row].title
             titleCell.lblUpdated.text = entry?[indexPath.row].updated
             titleCell.imageViewIcon.image = UIImage(named: (entry?[indexPath.row].keyTitle!)!)
-//            titleCell.imageViewIcon.image = UIImage(named: "Typhoon")
         }
         return cell
     }
@@ -81,13 +81,11 @@ extension TableViewControllerShow: AlertJSONDelegate {
         for (value,key) in (alertJSON?.dicCategoryRootKeyFilter)! {
             for ent in entry! {
                 if ent.keyTitle == nil { continue }
-//                print("keyTitle \(ent.keyTitle!), value \(value)")
                 if ent.keyTitle! == value, key == true {
                     self.entry?.append(ent)
                 }
             }
         }
-
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
