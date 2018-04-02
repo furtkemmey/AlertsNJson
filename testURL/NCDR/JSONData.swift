@@ -17,14 +17,6 @@ class AlertJson: NSObject {
     var urlJson: URL?
     var alertFeeds: AlertFeeds?
     weak var delegate: AlertJSONDelegate?
-
-    lazy var userDeaultCategory: UserDeaultCategory? = UserDeaultCategory()
-    var dicCategoryRootKeyFilter: [String : Bool]? {
-        return userDeaultCategory?.dicCategoryRootKey.filter {
-            $0.value == true
-        }
-    }
-
     
     init?(URLString: String) {
         super.init()
@@ -126,6 +118,30 @@ struct AlertFeeds {
     var idString: String?
     var title: String?
     var entries: [Entry]?
+
+    var userDeaultCategory: UserDeaultCategory? = UserDeaultCategory()
+
+    var dicCategoryRootKeyFilter: [String : Bool]? { // filter items true or false
+        let filterDic = userDeaultCategory?.dicCategoryRootKey.filter {
+            $0.value == true
+        }
+        return filterDic
+    }
+    var filterAlertFeedsEntries: [Entry]? { // switch on items
+        var tempEntry = [Entry]()
+        guard self.entries != nil,dicCategoryRootKeyFilter != nil else {
+            return nil
+        }
+        for ent in (self.entries!) {
+            for (value,key) in (dicCategoryRootKeyFilter)! {
+                if ent.keyTitle == nil { continue }
+                if ent.keyTitle == value, key == true {
+                    tempEntry.append(ent)
+                }
+            }
+        }
+        return tempEntry
+    }
 }
 extension AlertFeeds : CustomStringConvertible {
     var description: String {
@@ -156,7 +172,6 @@ struct Entry {
         }
         return nil
     }
-
     var keyTitleList:[String : String] = [
         "地震" : UserDefaults.Cateory.getkeystring(forKey: .earthquake),
         "土石流" :UserDefaults.Cateory.getkeystring(forKey: .debrisFlow),
@@ -187,7 +202,7 @@ struct Entry {
 }
 extension Entry : CustomStringConvertible {
     var description: String {
-        return "idString = \(String(describing: self.idString))\n title = \(String(describing: self.title))\n updated = \(String(describing: self.updated)),author = \(String(describing: self.author))\n,href = \(String(describing: self.linkHref))\n,summary = \(String(describing: self.summary))\n,category = \(String(describing: self.category))\n"
+        return "idString = \(String(describing: self.idString))\n title = \(String(describing: self.title))\n updated = \(String(describing: self.updated)),author = \(String(describing: self.author))\n,href = \(String(describing: self.linkHref))\n,summary = \(String(describing: self.summary))\n,category = \(String(describing: self.category))\n------------\n"
     }
 }
 

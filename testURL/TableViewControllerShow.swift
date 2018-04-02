@@ -78,14 +78,12 @@ extension UIViewController {
 
 extension TableViewControllerShow: AlertJSONDelegate {
     func AlertJSON(_ alertJSON: AlertJson?, didLoad feeds: AlertFeeds?, and entry: [Entry]?) {
-        for (value,key) in (alertJSON?.dicCategoryRootKeyFilter)! {
-            for ent in entry! {
-                if ent.keyTitle == nil { continue }
-                if ent.keyTitle! == value, key == true {
-                    self.entry?.append(ent)
-                }
-            }
-        }
+        self.entry = []
+        print(feeds?.filterAlertFeedsEntries!)
+        self.entry = feeds?.filterAlertFeedsEntries
+
+//        print(self.entry)
+
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
