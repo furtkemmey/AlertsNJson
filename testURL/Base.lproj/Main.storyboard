@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="ttttt" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="avE-7U-3tY">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="ttttt" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="avE-7U-3tY">
                                 <rect key="frame" x="16" y="111.5" width="343" height="343.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -26,8 +26,8 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gfN-3k-Upv">
-                                <rect key="frame" x="76.5" y="502" width="222" height="157"/>
-                                <state key="normal" title="Button" image="mi">
+                                <rect key="frame" x="103.5" y="502" width="168" height="157"/>
+                                <state key="normal" image="mi">
                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>

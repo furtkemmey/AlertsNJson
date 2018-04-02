@@ -79,7 +79,7 @@ extension UIViewController {
 extension TableViewControllerShow: AlertJSONDelegate {
     func AlertJSON(_ alertJSON: AlertJson?, didLoad feeds: AlertFeeds?, and entry: [Entry]?) {
         self.entry = []
-        print(feeds?.filterAlertFeedsEntries!)
+//        print(feeds?.filterAlertFeedsEntries!)
         self.entry = feeds?.filterAlertFeedsEntries
 
 //        print(self.entry)
