@@ -12,8 +12,6 @@ class TableViewControllerShow: UITableViewController {
     var URLStringAddress = "https://alerts.ncdr.nat.gov.tw/JSONAtomFeed.ashx"
     var alertJson: AlertJson?
     var entry: [Entry]? = [Entry]()
-//    var userDeaultCategory: UserDeaultCategory? = UserDeaultCategory()
-//    var currentRow = 0
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -23,8 +21,6 @@ class TableViewControllerShow: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         alertJson = AlertJson(URLString: URLStringAddress)
         alertJson?.delegate = self
-//        self.title = "test title"
-    
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -33,15 +29,12 @@ class TableViewControllerShow: UITableViewController {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
-//        print(entry)
-
     }
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (self.entry?.count) ?? 0
     }
@@ -57,6 +50,7 @@ class TableViewControllerShow: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
     // MARK: - prepare for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
@@ -70,27 +64,16 @@ class TableViewControllerShow: UITableViewController {
                         }
                     }
                 default: break
-                }
-        }
+                } // end switch
+        } // end if
     }
 }
 
-extension UIViewController {
-    var contents: UIViewController {
-        if let navcon = self as? UINavigationController {
-            return navcon.visibleViewController ?? self
-        } else {
-            return self
-        }
-    }
-}
-
-
+// MARK: - JSON Deleate
 extension TableViewControllerShow: AlertJSONDelegate {
     func AlertJSON(_ alertJSON: AlertJson?, didLoad feeds: AlertFeeds?, and entry: [Entry]?) {
         self.entry = []
         self.entry = alertJSON?.alertFeedsEntriesFiltered()
-
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }

@@ -8,11 +8,9 @@
 
 import Foundation
 
-
 struct UserDeaultCategory: CustomStringConvertible {
     let userDefault = UserDefaults.standard
     var dicCategoryRootKey = [String : Bool]()
-
 
     init() {
         for key in CategorRootKye {
@@ -20,16 +18,12 @@ struct UserDeaultCategory: CustomStringConvertible {
         }
         setDefaultRegister()
         self.getDataFromUserDefault()
-//        print("UserDeaultCategory init() is\n\(self)")
     }
     mutating func getDataFromUserDefault() {
-//        dicCategoryRootKey = [:]
         for key in CategorRootKye {
-//        for (key,_) in dicCategoryRootKey {
             let value  = UserDefaults.Cateory.bool(forKey: UserDefaults.Cateory.defaultKeys(rawValue: key)!)
             dicCategoryRootKey.updateValue(value, forKey: key)
         }
-//        print("getDataFromUserDefault is \(self)")
     }
     mutating func backDataToUserDefault() {
         for (key,value) in dicCategoryRootKey {
@@ -37,23 +31,16 @@ struct UserDeaultCategory: CustomStringConvertible {
         }
         userDefault.synchronize()
     }
-//    mutating func update(value: Bool, forKey: Cateory) {
-//        userDefault.set(value, forKey: forKey.rawValue)
-//    }
-//    func getDate(fromkey: String ) -> Bool? {
-//        return userDefault.bool(forKey: fromkey.rawValue)
-//    }
     var description: String {
         var temp = "{\n"
         for (key,value) in dicCategoryRootKey {
-//            temp += String(format: "key %s = %s \n", String(key), String(value.description))
             temp += "\(key) : \(value) \n"
         }
         temp += "}"
         return temp
     }
     private func setDefaultRegister() {
-        //default value
+        // default value
         userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .earthquake): true])
         userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .debrisFlow): true])
         userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .tsunami): true])
@@ -108,9 +95,11 @@ struct UserDeaultCategory: CustomStringConvertible {
                              UserDefaults.Cateory.getkeystring(forKey: .GatesInfo ),
                          ]
 }
+
 protocol UserDefaultsSettable {
     associatedtype defaultKeys: RawRepresentable
 }
+
 // default func
 extension UserDefaultsSettable where defaultKeys.RawValue == String {
     static func set(value: Bool?, for key: defaultKeys) {
@@ -166,14 +155,3 @@ extension UserDefaults {
         }
     }
 }
-
-//extension UserDeaultCategoryNSynchronize : CustomStringConvertible {
-//    var description: String {
-//        var temp = String()
-//        for (key,value) in dicCategoryRootKye {
-//            temp += String(format: "key %s = %s \n", String(key), String(value.description))
-//        }
-//        return temp
-//    }
-//}
-

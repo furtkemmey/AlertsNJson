@@ -35,9 +35,7 @@ class ViewController: UIViewController {
             print(error.code)
         }
         if let speakText = entry?.summary {
-//            let utterance = AVSpeechUtterance(string: "特別是剛做過語")
             let utterance = AVSpeechUtterance(string: speakText)
-            //        utterance = AVSpeechUtterance(string: "Unity")
             utterance.rate = AVSpeechUtteranceDefaultSpeechRate // AVSpeechUtteranceDefaultSpeechRate 0.1
             utterance.pitchMultiplier = 1.0 // 0.5 ~ 2.0
             utterance.preUtteranceDelay = 0.3
@@ -45,7 +43,6 @@ class ViewController: UIViewController {
             utterance.volume = 1 // default 1 0.0 ~ 1.0
             utterance.voice = AVSpeechSynthesisVoice(language: "zh-TW") //zh-TW en-US
             self.synth?.speak(utterance)
-            //        synth?.delegate = self
         }
 
     }

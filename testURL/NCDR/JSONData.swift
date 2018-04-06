@@ -7,11 +7,9 @@
 //
 import Foundation
 
-// TODO: add protocol AlertJson:didFinish load:
 protocol AlertJSONDelegate: class {
     func AlertJSON(_ alertJSON:AlertJson?,didLoad feeds: AlertFeeds?,and entry: [Entry]?)
 }
-// TODO: save to UserDefaults.standar
 
 class AlertJson: NSObject {
     private var urlJson: URL?
@@ -31,16 +29,15 @@ class AlertJson: NSObject {
         if let url = URL(string: URLString) {
             DispatchQueue.global(qos: .userInitiated).async{ [weak self] in
                 let task = URLSession.shared.dataTask(with: url) { [weak self] (data, response , error) in
-                                               //check url really we want
+                                               // check url really we want
                     if let data = data, url == self?.urlJson {
                         guard let jsonDicObj = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String : Any] else {
                              return
                         }
                         
-                        //root
+                        // root
                         if let title = jsonDicObj!["title"] as? String {
                             self?.alertFeeds?.title = title
-//                            print("Root title= \(title)")
                         }
                         switch jsonDicObj!["entry"] {
                         case let entry as [String : Any]:
@@ -52,44 +49,33 @@ class AlertJson: NSObject {
                         default:
                             print("")
                         }
-//                        // one tntry
-//                        if let entry = jsonDicObj!["entry"] as? [String : Any] {
-//                            self?.analysisEntry(entry: entry)
-//                        }
-//                        // entris
-//                        if let entries = jsonDicObj!["entry"] as? [[String : Any]] {
-//                            for entry in entries {
-//                                self?.analysisEntry(entry: entry)
-//                            }
-//                        }
                     } else { // if let data = data, url == self?.urlJson
                         print("Error...")
                     }
                     self?.delegate?.AlertJSON(self, didLoad: self?.alertFeeds, and: self?.alertFeeds?.entries)
-                }//end URLSession.shared.dataTask
+                } // end URLSession.shared.dataTask
                 task.resume()
             }
-        } else {//end if let url = URL
+        } else { // end if let url = URL
             return false
         }
         return true
     }
     private func analysisEntry(entry:  [String : Any] ) {
         var entryTemp = Entry()
-        //id
+         // id
         if let idString = entry["id"] as? String {
             entryTemp.idString = idString
-            //                                print("ID= \(idString)")
+
         }
-        //title
+        // title
         if let title = entry["title"] as? String {
             entryTemp.title = title
-//            entryTemp.keyTitle = keyTitle[title]
+
         }
-        //updated
+        // updated
         if let updated = entry["updated"] as? String {
             entryTemp.updated = updated
-            //                                print("Updated= \(updated)")
         }
         // author
         if let author = entry["author"] as? [String : String] {
@@ -102,7 +88,6 @@ class AlertJson: NSObject {
         // summary
         if let summary = entry["summary"] as? [String : String] {
             entryTemp.summary = summary["#text"]?.trimmingCharacters(in: .whitespaces)
-            //                                print("Summary= \(String(describing: summary["#text"]))")
         }
         // category
         if let category = entry["category"] as? [String : String] {
@@ -132,6 +117,7 @@ class AlertJson: NSObject {
         return tempEntry
     }
 }
+
 struct AlertFeeds {
     init() {
         entries = [Entry]()
@@ -139,33 +125,6 @@ struct AlertFeeds {
     var idString: String?
     var title: String?
     var entries: [Entry]?
-
-//    var userDeaultCategory: UserDeaultCategory? = UserDeaultCategory()
-
-
-//    /// filter items true or false
-//    var dicCategoryRootKeyFilter: [String : Bool]? {
-//        let filterDic = userDeaultCategory?.dicCategoryRootKey.filter {
-//            $0.value == true
-//        }
-//        return filterDic
-//    }
-//    /// switch on items
-//    var filterAlertFeedsEntries: [Entry]? {
-//        var tempEntry = [Entry]()
-//        guard self.entries != nil,dicCategoryRootKeyFilter != nil else {
-//            return nil
-//        }
-//        for ent in (self.entries!) {
-//            for (value,key) in (dicCategoryRootKeyFilter)! {
-//                if ent.keyTitle == nil { continue }
-//                if ent.keyTitle == value, key == true {
-//                    tempEntry.append(ent)
-//                }
-//            }
-//        }
-//        return tempEntry
-//    }
 }
 extension AlertFeeds : CustomStringConvertible {
     var description: String {
@@ -174,9 +133,6 @@ extension AlertFeeds : CustomStringConvertible {
 }
 
 struct Entry {
-//    init() {
-//        print("Entry init")
-//    }
     var idString: String?
     var title: String?
     var keyTitle: String? {

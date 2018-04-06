@@ -10,12 +10,8 @@ import UIKit
 
 class TableViewControllerConfig: UITableViewController {
     lazy var userDeaultCategory = UserDeaultCategory()
-//    lazy var dicCategoryRootKey:[String : Bool] = userDeaultCategory.dicCategoryRootKey {
-//        didSet{
-//
-//        }
-//    }
-    var titleList:[String] = [
+
+    private var titleList:[String] = [
         "地震",
         "土石流",
         "海嘯",
@@ -42,7 +38,7 @@ class TableViewControllerConfig: UITableViewController {
         "水庫放流",
         "水門資訊",
     ]
-    var keyTitleList:[String : String] = [
+    private var keyTitleList:[String : String] = [
         "地震" : UserDefaults.Cateory.getkeystring(forKey: .earthquake),
         "土石流" :UserDefaults.Cateory.getkeystring(forKey: .debrisFlow),
         "海嘯" : UserDefaults.Cateory.getkeystring(forKey: .tsunami),
@@ -69,17 +65,14 @@ class TableViewControllerConfig: UITableViewController {
         "水庫放流" : UserDefaults.Cateory.getkeystring(forKey: .ReservoirDis ),
         "水門資訊" : UserDefaults.Cateory.getkeystring(forKey: .GatesInfo )
     ]
+    
     // MARK: IBAction
     @IBAction func switchValueChanged(_ sender: UISwitch) {
         if let cell = sender.superview?.superview as? TableViewCellConfig   {
             let indexPath = tableView.indexPath(for: cell)
             let value = cell.switchShow.isOn
-//            UserDefaults.Cateory.set(value: value, for: keyTitleList[titleList[(indexPath?.row)!]]!)
             userDeaultCategory.dicCategoryRootKey[keyTitleList[titleList[(indexPath?.row)!]]!] = value
-//            print(userDeaultCategory.dicCategoryRootKey)
             userDeaultCategory.backDataToUserDefault();
-//            print("\(keyTitleList[titleList[(indexPath?.row)!]]!) is \(value)")
-            
         }
     }
     
@@ -91,18 +84,15 @@ class TableViewControllerConfig: UITableViewController {
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-//        userDeaultCategory.backDataToUserDefault();
     }
     
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return userDeaultCategory.dicCategoryRootKey.count
     }
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "configCell", for: indexPath)
         if let titleCell = cell as? TableViewCellConfig {
@@ -116,51 +106,4 @@ class TableViewControllerConfig: UITableViewController {
             print(cellForRow.lblShow.text!)
         }
     }
- 
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
