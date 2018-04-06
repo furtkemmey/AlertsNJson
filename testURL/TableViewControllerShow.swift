@@ -26,6 +26,16 @@ class TableViewControllerShow: UITableViewController {
 //        self.title = "test title"
     
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.entry = []
+        self.entry = alertJson?.alertFeedsEntriesFiltered()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+//        print(entry)
+
+    }
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -79,10 +89,7 @@ extension UIViewController {
 extension TableViewControllerShow: AlertJSONDelegate {
     func AlertJSON(_ alertJSON: AlertJson?, didLoad feeds: AlertFeeds?, and entry: [Entry]?) {
         self.entry = []
-//        print(feeds?.filterAlertFeedsEntries!)
-        self.entry = feeds?.filterAlertFeedsEntries
-
-//        print(self.entry)
+        self.entry = alertJSON?.alertFeedsEntriesFiltered()
 
         DispatchQueue.main.async {
             self.tableView.reloadData()

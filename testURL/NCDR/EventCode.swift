@@ -20,13 +20,16 @@ struct UserDeaultCategory: CustomStringConvertible {
         }
         setDefaultRegister()
         self.getDataFromUserDefault()
-        print("self is\n\(self)")
+//        print("UserDeaultCategory init() is\n\(self)")
     }
     mutating func getDataFromUserDefault() {
-        for (key,_) in dicCategoryRootKey {
+//        dicCategoryRootKey = [:]
+        for key in CategorRootKye {
+//        for (key,_) in dicCategoryRootKey {
             let value  = UserDefaults.Cateory.bool(forKey: UserDefaults.Cateory.defaultKeys(rawValue: key)!)
             dicCategoryRootKey.updateValue(value, forKey: key)
         }
+//        print("getDataFromUserDefault is \(self)")
     }
     mutating func backDataToUserDefault() {
         for (key,value) in dicCategoryRootKey {
@@ -37,7 +40,7 @@ struct UserDeaultCategory: CustomStringConvertible {
 //    mutating func update(value: Bool, forKey: Cateory) {
 //        userDefault.set(value, forKey: forKey.rawValue)
 //    }
-//    func getDate(fromkey: Cateory ) -> Bool? {
+//    func getDate(fromkey: String ) -> Bool? {
 //        return userDefault.bool(forKey: fromkey.rawValue)
 //    }
     var description: String {
@@ -108,15 +111,25 @@ struct UserDeaultCategory: CustomStringConvertible {
 protocol UserDefaultsSettable {
     associatedtype defaultKeys: RawRepresentable
 }
+// default func
 extension UserDefaultsSettable where defaultKeys.RawValue == String {
     static func set(value: Bool?, for key: defaultKeys) {
         let keyString = key.rawValue
+        UserDefaults.standard.set(value, forKey: keyString)
+    }
+    static func set(value: Bool?, for key: String) {
+        let keyString = key
         UserDefaults.standard.set(value, forKey: keyString)
     }
     static func bool(forKey key: defaultKeys) -> Bool {
         let keyString = key.rawValue
         return UserDefaults.standard.bool(forKey: keyString)
     }
+    static func bool(forKey key: String) -> Bool {
+        let keyString = key
+        return UserDefaults.standard.bool(forKey: keyString)
+    }
+
     static func getkeystring(forKey key: defaultKeys) -> String {
         return key.rawValue
     }

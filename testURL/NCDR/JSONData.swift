@@ -27,7 +27,7 @@ class AlertJson: NSObject {
         }
     }
     
-    private func getDataFromInternet(URLString: String) -> Bool {
+    func getDataFromInternet(URLString: String) -> Bool {
         if let url = URL(string: URLString) {
             DispatchQueue.global(qos: .userInitiated).async{ [weak self] in
                 let task = URLSession.shared.dataTask(with: url) { [weak self] (data, response , error) in
@@ -110,29 +110,18 @@ class AlertJson: NSObject {
         }
         alertFeeds?.entries?.append(entryTemp)
     }
-}
-struct AlertFeeds {
-    init() {
-        entries = [Entry]()
-    }
-    var idString: String?
-    var title: String?
-    var entries: [Entry]?
-
-    var userDeaultCategory: UserDeaultCategory? = UserDeaultCategory()
-
-    var dicCategoryRootKeyFilter: [String : Bool]? { // filter items true or false
-        let filterDic = userDeaultCategory?.dicCategoryRootKey.filter {
+    /// get switch on items
+    func alertFeedsEntriesFiltered() -> [Entry]? {
+        var userDeaultCategory: UserDeaultCategory? = UserDeaultCategory()
+        userDeaultCategory?.getDataFromUserDefault()
+        let dicCategoryRootKeyFilter: [String : Bool]?  = userDeaultCategory?.dicCategoryRootKey.filter {
             $0.value == true
         }
-        return filterDic
-    }
-    var filterAlertFeedsEntries: [Entry]? { // switch on items
         var tempEntry = [Entry]()
-        guard self.entries != nil,dicCategoryRootKeyFilter != nil else {
+        guard self.alertFeeds?.entries != nil,dicCategoryRootKeyFilter != nil else {
             return nil
         }
-        for ent in (self.entries!) {
+        for ent in (self.alertFeeds?.entries!)! {
             for (value,key) in (dicCategoryRootKeyFilter)! {
                 if ent.keyTitle == nil { continue }
                 if ent.keyTitle == value, key == true {
@@ -142,6 +131,41 @@ struct AlertFeeds {
         }
         return tempEntry
     }
+}
+struct AlertFeeds {
+    init() {
+        entries = [Entry]()
+    }
+    var idString: String?
+    var title: String?
+    var entries: [Entry]?
+
+//    var userDeaultCategory: UserDeaultCategory? = UserDeaultCategory()
+
+
+//    /// filter items true or false
+//    var dicCategoryRootKeyFilter: [String : Bool]? {
+//        let filterDic = userDeaultCategory?.dicCategoryRootKey.filter {
+//            $0.value == true
+//        }
+//        return filterDic
+//    }
+//    /// switch on items
+//    var filterAlertFeedsEntries: [Entry]? {
+//        var tempEntry = [Entry]()
+//        guard self.entries != nil,dicCategoryRootKeyFilter != nil else {
+//            return nil
+//        }
+//        for ent in (self.entries!) {
+//            for (value,key) in (dicCategoryRootKeyFilter)! {
+//                if ent.keyTitle == nil { continue }
+//                if ent.keyTitle == value, key == true {
+//                    tempEntry.append(ent)
+//                }
+//            }
+//        }
+//        return tempEntry
+//    }
 }
 extension AlertFeeds : CustomStringConvertible {
     var description: String {
