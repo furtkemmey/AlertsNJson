@@ -14,7 +14,7 @@ protocol AlertJSONDelegate: class {
 // TODO: save to UserDefaults.standar
 
 class AlertJson: NSObject {
-    var urlJson: URL?
+    private var urlJson: URL?
     var alertFeeds: AlertFeeds?
     weak var delegate: AlertJSONDelegate?
     
@@ -74,7 +74,7 @@ class AlertJson: NSObject {
         }
         return true
     }
-    func analysisEntry(entry:  [String : Any] ) {
+    private func analysisEntry(entry:  [String : Any] ) {
         var entryTemp = Entry()
         //id
         if let idString = entry["id"] as? String {

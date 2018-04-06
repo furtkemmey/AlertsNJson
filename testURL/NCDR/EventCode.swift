@@ -52,7 +52,7 @@ struct UserDeaultCategory: CustomStringConvertible {
         temp += "}"
         return temp
     }
-    func setDefaultRegister() {
+    private func setDefaultRegister() {
         //default value
         userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .earthquake): true])
         userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .debrisFlow): true])
@@ -80,7 +80,7 @@ struct UserDeaultCategory: CustomStringConvertible {
         userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .ReservoirDis): true])
         userDefault.register(defaults: [UserDefaults.Cateory.getkeystring(forKey: .GatesInfo): true])
     }
-    let CategorRootKye = [
+    private let CategorRootKye = [
                              UserDefaults.Cateory.getkeystring(forKey: .earthquake),
                              UserDefaults.Cateory.getkeystring(forKey: .debrisFlow),
                              UserDefaults.Cateory.getkeystring(forKey: .tsunami),
