@@ -51,7 +51,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         outletTextView.text = entry?.summary
-        outletButton.setTitle("Speak", for: .normal)
+//        outletButton.setTitle("Speak", for: .normal)
         lblTitle.text = entry?.title
         lblName.text = entry?.author
         lblUpdated.text = entry?.updated
