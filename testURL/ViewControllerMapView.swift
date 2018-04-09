@@ -13,7 +13,7 @@ class ViewControllerMapView: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("map view entry is \(entry?.summary)")
+//        print("map view entry is \(entry?.summary)")
 
         // Do any additional setup after loading the view.
     }

@@ -55,9 +55,11 @@ class ViewController: UIViewController {
         lblTitle.text = entry?.title
         lblName.text = entry?.author
         lblUpdated.text = entry?.updated
+
         outletTextView.translatesAutoresizingMaskIntoConstraints = true
         outletTextView.sizeToFit()
         outletTextView.isScrollEnabled = false
+//        outletTextView.layoutManager.allowsNonContiguousLayout = false
 
         
         
