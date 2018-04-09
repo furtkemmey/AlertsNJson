@@ -10,11 +10,9 @@ import UIKit
 
 class ViewControllerAbout: UIViewController {
     @IBOutlet weak var btnLeft: UIButton!
-    @IBOutlet weak var btnRight: UIButton!
 
     override func viewWillAppear(_ animated: Bool) {
         btnLeft.shake()
-        btnRight.shake()
     }
     override func viewDidLoad() {
         super.viewDidLoad()

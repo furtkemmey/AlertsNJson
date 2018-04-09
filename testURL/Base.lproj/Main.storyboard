@@ -134,11 +134,11 @@
                                         <constraint firstAttribute="bottom" secondItem="R27-19-G1I" secondAttribute="bottom" constant="10" id="U7p-aE-Acd"/>
                                         <constraint firstAttribute="trailing" secondItem="UAj-3K-umi" secondAttribute="trailing" constant="20" symbolic="YES" id="du7-P4-6pk"/>
                                         <constraint firstItem="UAj-3K-umi" firstAttribute="top" secondItem="Mij-WS-6CC" secondAttribute="top" id="eT1-GE-qdQ"/>
-                                        <constraint firstItem="R27-19-G1I" firstAttribute="leading" relation="lessThanOrEqual" secondItem="tCU-ID-Bvb" secondAttribute="leading" constant="328" id="fFP-gc-gnA"/>
                                         <constraint firstItem="Mij-WS-6CC" firstAttribute="leading" secondItem="tCU-ID-Bvb" secondAttribute="leading" constant="20" symbolic="YES" id="mbh-D4-AL9"/>
                                         <constraint firstAttribute="trailing" secondItem="R27-19-G1I" secondAttribute="trailing" constant="20" symbolic="YES" id="qWa-6w-nIR"/>
                                         <constraint firstItem="Mij-WS-6CC" firstAttribute="top" secondItem="tCU-ID-Bvb" secondAttribute="top" constant="20" symbolic="YES" id="s5p-4G-eSp"/>
                                         <constraint firstItem="UAj-3K-umi" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Mij-WS-6CC" secondAttribute="trailing" constant="8" symbolic="YES" id="s6t-GY-Xn8"/>
+                                        <constraint firstItem="R27-19-G1I" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tCU-ID-Bvb" secondAttribute="leading" constant="20" symbolic="YES" id="wbq-C9-5gT"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -239,35 +239,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="團隊成員" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jr4-Vi-nvU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="團隊成員" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jr4-Vi-nvU">
                                 <rect key="frame" x="147" y="456" width="81" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tvA-GP-PVY">
-                                <rect key="frame" x="103" y="128" width="80" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tvA-GP-PVY">
+                                <rect key="frame" x="115" y="114" width="144" height="67"/>
                                 <state key="normal" title="Button" image="Typhoon">
-                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qGt-Wz-JqF">
-                                <rect key="frame" x="191" y="128" width="80" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="tsunami">
                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="L7Y-Bd-zWJ" firstAttribute="bottom" secondItem="Jr4-Vi-nvU" secondAttribute="bottom" constant="141" id="ZR3-4F-YZN"/>
+                            <constraint firstItem="Jr4-Vi-nvU" firstAttribute="centerX" secondItem="L7Y-Bd-zWJ" secondAttribute="centerX" id="ZcO-21-AIU"/>
+                            <constraint firstItem="tvA-GP-PVY" firstAttribute="top" secondItem="L7Y-Bd-zWJ" secondAttribute="top" constant="50" id="dgy-l0-pKK"/>
+                            <constraint firstItem="tvA-GP-PVY" firstAttribute="centerX" secondItem="L7Y-Bd-zWJ" secondAttribute="centerX" id="uai-l4-6dC"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="L7Y-Bd-zWJ"/>
                     </view>
                     <navigationItem key="navigationItem" title="About" id="t05-sr-MkB"/>
                     <connections>
                         <outlet property="btnLeft" destination="tvA-GP-PVY" id="wCC-bl-5hq"/>
-                        <outlet property="btnRight" destination="qGt-Wz-JqF" id="wWd-KI-eD6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1d6-jf-0eN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -380,6 +376,5 @@
         <image name="Typhoon" width="90" height="67"/>
         <image name="flood" width="72" height="66"/>
         <image name="mi" width="168" height="157"/>
-        <image name="tsunami" width="94" height="48"/>
     </resources>
 </document>
