@@ -80,7 +80,7 @@ class TableViewControllerConfig: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.estimatedRowHeight = 180
-        tableView.rowHeight = UITableViewAutomaticDimension
+//        tableView.rowHeight = UITableViewAutomaticDimension
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
