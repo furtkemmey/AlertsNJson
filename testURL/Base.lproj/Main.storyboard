@@ -221,6 +221,9 @@
                         <viewLayoutGuide key="safeArea" id="Ol4-j3-PCg"/>
                     </view>
                     <navigationItem key="navigationItem" title="MAP" id="Nd6-Ca-8ie"/>
+                    <connections>
+                        <outlet property="myMapView" destination="Gt7-uc-h8C" id="uD4-KJ-Izp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wke-Jc-uep" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
