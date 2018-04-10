@@ -36,7 +36,7 @@ extension UIView {
     func shake() {
         let animation = CABasicAnimation(keyPath: "position")
         animation.duration = 0.05
-        animation.repeatCount = 5
+        animation.repeatCount = 3
         animation.autoreverses = true
         animation.fromValue = [self.center.x - 20.0, self.center.y]
         //        animation.fromValue = NSValue(CGPoint: CGPointMake(self.center.x - 4.0, self.center.y))
