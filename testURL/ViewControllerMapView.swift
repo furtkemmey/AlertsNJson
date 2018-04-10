@@ -21,8 +21,8 @@ class ViewControllerMapView: UIViewController, CLLocationManagerDelegate, MKMapV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("category is \(String(describing: entry?.category))")
-        print("summary is \(String(describing: entry?.summary))")
+//        print("category is \(String(describing: entry?.category))")
+//        print("summary is \(String(describing: entry?.summary))")
         
         myMapView.delegate = self
         
@@ -73,7 +73,7 @@ class ViewControllerMapView: UIViewController, CLLocationManagerDelegate, MKMapV
                 if let location = placemark.location {
                     annotation.coordinate = location.coordinate
                     //self.myMapView.showAnnotations([annotation], animated: true)
-                    print(annotation.coordinate)
+//                    print(annotation.coordinate)
                     self.myMapView.addAnnotation(annotation)
                     self.myMapView.selectAnnotation(annotation, animated: true)
                     if self.line != "台灣" {
@@ -104,6 +104,7 @@ class ViewControllerMapView: UIViewController, CLLocationManagerDelegate, MKMapV
 //            annView = MKAnnotationView(annotation: annotation, reuseIdentifier: "Pin")
             annView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "Pin")
             annView?.canShowCallout = true
+            annView?.pinTintColor = UIColor.blue
         }
         
         
