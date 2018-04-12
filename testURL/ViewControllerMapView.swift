@@ -21,8 +21,8 @@ class ViewControllerMapView: UIViewController, CLLocationManagerDelegate, MKMapV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        print("category is \(String(describing: entry?.category))")
-//        print("summary is \(String(describing: entry?.summary))")
+        //        print("category is \(String(describing: entry?.category))")
+        //        print("summary is \(String(describing: entry?.summary))")
         
         myMapView.delegate = self
         
@@ -66,16 +66,12 @@ class ViewControllerMapView: UIViewController, CLLocationManagerDelegate, MKMapV
                 let placemark = placemarks[0]
                 
                 //定義大頭針
-                //self.myMapView.removeAnnotation(self.myMapView.annotations as! MKAnnotation)
                 let annotation = MKPointAnnotation()
                 annotation.title = self.entry?.category
                 //annotation.subtitle = self.entry?.summary
                 if let location = placemark.location {
                     annotation.coordinate = location.coordinate
-                    //self.myMapView.showAnnotations([annotation], animated: true)
-//                    print(annotation.coordinate)
                     self.myMapView.addAnnotation(annotation)
-                    self.myMapView.selectAnnotation(annotation, animated: true)
                     if self.line != "台灣" {
                         let region = MKCoordinateRegion(center: annotation.coordinate,
                                                         span: MKCoordinateSpan(latitudeDelta: 1.5, longitudeDelta: 1.5))
@@ -85,6 +81,7 @@ class ViewControllerMapView: UIViewController, CLLocationManagerDelegate, MKMapV
                                                         span: MKCoordinateSpan(latitudeDelta: 2.5, longitudeDelta: 2.5))
                         self.myMapView.setRegion(region, animated: false)
                     }
+                    self.myMapView.selectAnnotation(annotation, animated: true)
                 }
             }
         })
@@ -92,19 +89,20 @@ class ViewControllerMapView: UIViewController, CLLocationManagerDelegate, MKMapV
     
     //MARK: MKMapViewDelegate 實作：自訂大頭針樣式
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-//        if annotation is MKUserLocation {
-//            return nil  //如果是目前位置的大頭針, 則不更動樣式
-//        }
+        //        if annotation is MKUserLocation {
+        //            return nil  //如果是目前位置的大頭針, 則不更動樣式
+        //        }
         if annotation.isKind(of: MKUserLocation.self) {
             return nil
         }
         //用"Pin"ID來取得大頭針樣式（注意：不要轉型為預設大頭針，使用一般型的大頭針樣式）
         var annView = mapView.dequeueReusableAnnotationView(withIdentifier: "Pin") as? MKPinAnnotationView
         if annView == nil {
-//            annView = MKAnnotationView(annotation: annotation, reuseIdentifier: "Pin")
+            //            annView = MKAnnotationView(annotation: annotation, reuseIdentifier: "Pin")
             annView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "Pin")
             annView?.canShowCallout = true
             annView?.pinTintColor = UIColor.blue
+            annView?.alpha = 0.8
         }
         
         

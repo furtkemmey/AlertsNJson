@@ -10,13 +10,14 @@ import UIKit
 
 class ViewControllerAbout: UIViewController {
     @IBOutlet weak var btnLeft: UIButton!
-
+    @IBOutlet weak var textView: UITextView!
+    
     override func viewWillAppear(_ animated: Bool) {
         btnLeft.shake()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        //textView.dataDetectorTypes = UIDataDetectorTypes.link
         // Do any additional setup after loading the view.
     }
 
