@@ -75,7 +75,6 @@ class ViewControllerMapView: UIViewController, CLLocationManagerDelegate, MKMapV
                     //self.myMapView.showAnnotations([annotation], animated: true)
 //                    print(annotation.coordinate)
                     self.myMapView.addAnnotation(annotation)
-                    self.myMapView.selectAnnotation(annotation, animated: true)
                     if self.line != "台灣" {
                         let region = MKCoordinateRegion(center: annotation.coordinate,
                                                         span: MKCoordinateSpan(latitudeDelta: 1.5, longitudeDelta: 1.5))
@@ -85,6 +84,7 @@ class ViewControllerMapView: UIViewController, CLLocationManagerDelegate, MKMapV
                                                         span: MKCoordinateSpan(latitudeDelta: 2.5, longitudeDelta: 2.5))
                         self.myMapView.setRegion(region, animated: false)
                     }
+                    self.myMapView.selectAnnotation(annotation, animated: true)
                 }
             }
         })

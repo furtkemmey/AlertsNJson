@@ -60,7 +60,7 @@ class TableViewControllerShow: UITableViewController {
                         if let cell = sender as? TableViewCellShow,
                             let indexPath = tableView.indexPath(for: cell) {
                             seguedToMVC.entry = alertJson?.alertFeeds?.entries?[indexPath.row]
-                            print("currentRow from prepare is \(indexPath.row)")
+                           // print("currentRow from prepare is \(indexPath.row)")
                         }
                     }
                 default: break
